@@ -1,0 +1,42 @@
+
+Running 3 tests using 1 worker
+
+  x  1 e2e\reliability.spec.ts:18:1 › BUG-011 regression: server unreachable -> seats not shown as fresh, recommendations withdrawn; reconnect restores live data (24.6s)
+  ok 2 e2e\reliability.spec.ts:54:1 › student journey in the requested order, with zero console/page errors (30.2s)
+  ok 3 e2e\reliability.spec.ts:113:1 › map is keyboard-operable (Tab to a seat, Enter opens details) (406ms)
+
+
+  1) e2e\reliability.spec.ts:18:1 › BUG-011 regression: server unreachable -> seats not shown as fresh, recommendations withdrawn; reconnect restores live data 
+
+    Error: a seat must not stay green when no data can arrive
+
+    [31mTimed out 5000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoHaveAttribute[2m([22m[32mexpected[39m[2m)[22m
+
+    Locator: locator('[data-seat="B07"]')
+    Expected string: [32m"[7msta[27mle"[39m
+    Received string: [31m"[7mavailab[27mle"[39m
+    Call log:
+    [2m  - Expect "a seat must not stay green when no data can arrive" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-seat="B07"]')[22m
+    [2m    9 × locator resolved to <g opacity="1" tabindex="0" role="button" data-seat="B07" aria-pressed="false" data-tone="available" transform="translate(454, 360)" class="seat cursor-pointer focus:outline-none" aria-label="ที่นั่ง B07 ว่าง โต๊ะกลุ่ม คำแนะนำอันดับ 1">…</g>[22m
+    [2m      - unexpected value "available"[22m
+
+
+      38 |   for (const ws of live.splice(0)) await ws.close();
+      39 |   await page.waitForTimeout(12_000);
+    > 40 |   await expect(seat(page, "B07"), "a seat must not stay green when no data can arrive").toHaveAttribute("data-tone", "stale", { timeout: 5_000 });
+         |                                                                                         ^
+      41 |   await expect(recCards(page), "old recommendations must be withdrawn").toHaveCount(0);
+      42 |   await expect(page.getByTestId("link-down")).toContainText("ข้อมูลไม่เป็นปัจจุบัน");
+      43 |   await page.screenshot({ path: path.join(SHOTS, "20_server_unreachable_stale.png") });
+        at C:\Users\ebz14\CPE447\Project\SmartLibraryNEXT\SmartLibrary_NEXT_V2_Ready_Handoff\SmartLibrary_NEXT_V2_Ready\apps\web\e2e\reliability.spec.ts:40:89
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reliability-BUG-011-regres-c63c0-econnect-restores-live-data\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reliability-BUG-011-regres-c63c0-econnect-restores-live-data\error-context.md
+
+  1 failed
+    e2e\reliability.spec.ts:18:1 › BUG-011 regression: server unreachable -> seats not shown as fresh, recommendations withdrawn; reconnect restores live data 
+  2 passed (57.4s)

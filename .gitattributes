@@ -1,0 +1,19 @@
+# Normalise text line endings in the repository; Windows members get CRLF in their working tree.
+* text=auto
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.sh text eol=lf
+
+# Binary files: never diff/merge as text
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.pptx binary
+*.docx binary
+*.xlsx binary
+*.woff binary
+*.woff2 binary
+*.pt binary
+*.db binary

@@ -1,0 +1,175 @@
+{
+  "status": "WORKING_TESTED",
+  "scope": "เฉพาะ pipeline บนภาพตัวอย่างของ Ultralytics — ไม่ใช่ภาพห้องสมุด",
+  "library_cv_status": "BLOCKED",
+  "library_cv_blocker": "ไม่มีวิดีโอ/ภาพห้องสมุดที่ได้รับอนุญาต และไม่ได้รับอนุญาตใช้ webcam ในเซสชันนี้ จึงยังไม่มีการวัดความแม่นยำบนที่นั่งจริง",
+  "headline_th": "รัน yolo11n จริง 8 เฟรม (ภาพนิ่งเดิมซ้ำ) + ROI 4 จุด → state engine เดียวกับระบบ → ส่งเข้า API เป็น source='cv'",
+  "not_claimed_th": [
+    "ไม่ใช่ภาพจากห้องสมุดหรือกล้อง CCTV ของมหาวิทยาลัย",
+    "ROI วาดด้วยมือบนภาพตัวอย่างเพื่อทดสอบทุกกิ่งของ decision logic ไม่ใช่ที่นั่งจริง",
+    "ไม่มี ground truth ที่ติดป้ายโดยมนุษย์ → ไม่มี accuracy / mAP / False Available ของ CV",
+    "ไม่ได้ fine-tune โมเดล ใช้ COCO pretrained weights"
+  ],
+  "run_id": "cv20261014224004",
+  "run_at_utc": "2026-10-14T15:40:15.759Z",
+  "model": {
+    "name": "yolo11n",
+    "weights": "yolo11n.pt",
+    "weights_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "ultralytics_version": "8.4.177",
+    "task": "detect",
+    "num_classes": 80,
+    "pretrained_dataset": "COCO (80 classes) - pretrained weights, NOT fine-tuned by this project",
+    "has_literal_bag_class": false,
+    "belongings_classes_present": [
+      "backpack",
+      "book",
+      "handbag",
+      "laptop",
+      "suitcase"
+    ]
+  },
+  "environment": {
+    "python": "3.10.11",
+    "torch_version": "2.14.1+cpu",
+    "cuda_available": false,
+    "device": "cpu (torch CPU build; GPU not used)",
+    "os": "Windows 10 (10.0.26300)",
+    "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel"
+  },
+  "source": {
+    "description": "ultralytics/assets/bus.jpg (ภาพตัวอย่างที่มากับแพ็กเกจ ultralytics)",
+    "path": "C:\\Users\\ebz14\\CPE447\\Project\\SmartLibraryNEXT\\SmartLibrary_NEXT_V2_Ready_Handoff\\SmartLibrary_NEXT_V2_Ready\\.venv-cv\\lib\\site-packages\\ultralytics\\assets\\bus.jpg",
+    "sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "permission": "ภาพตัวอย่างที่แจกจ่ายมากับแพ็กเกจ ultralytics (AGPL-3.0) ใช้ทดสอบในเครื่องเท่านั้น ไม่เผยแพร่ภาพบุคคลต่อสาธารณะ",
+    "frames_note": "ภาพนิ่ง 1 ภาพ ประมวลผลซ้ำ 8 ครั้ง ห่างกัน 1.0 วินาที เพื่อให้ผ่าน temporal smoothing (ทุกครั้งคือ inference จริง)"
+  },
+  "rois": [
+    {
+      "seat_id": "LAB1",
+      "note": "Deliberate limitation test: seat polygon covers the hip area of a STANDING person (beige coat). A box+ROI rule cannot tell standing from sitting if the ROI is not calibrated to a real seat.",
+      "detections_summary": "bus 0.94 (in_seat=False, seat_overlap=0.06, in_table=False), person 0.88 (in_seat=True, seat_overlap=0.41, in_table=False), person 0.86 (in_seat=False, seat_overlap=0.07, in_table=False), person 0.62 (in_seat=False, seat_overlap=0.09, in_table=False)",
+      "raw_candidate": "occupied",
+      "committed_state": "occupied",
+      "codes": [
+        "P_SEATED"
+      ]
+    },
+    {
+      "seat_id": "LAB2",
+      "note": "Person (black coat) is next to the ROI; hip point outside the seat polygon -> expected ambiguous, not Occupied.",
+      "detections_summary": "bus 0.94 (in_seat=False, seat_overlap=0.03, in_table=False), person 0.86 (in_seat=False, seat_overlap=0.04, in_table=False)",
+      "raw_candidate": "unknown",
+      "committed_state": "unknown",
+      "codes": [
+        "P_NEAR_NOT_SEATED"
+      ]
+    },
+    {
+      "seat_id": "LAB3",
+      "note": "Empty pavement, nobody inside -> expected Available only after repeated clean frames.",
+      "detections_summary": "ไม่มี",
+      "raw_candidate": "available",
+      "committed_state": "available",
+      "codes": [
+        "E_EMPTY_VISIBLE"
+      ]
+    },
+    {
+      "seat_id": "LAB4",
+      "note": "Walking person on the right crosses the table polygon; hip point not in the seat polygon -> walk-through must not become Occupied.",
+      "detections_summary": "bus 0.94 (in_seat=False, seat_overlap=0.00, in_table=False), person 0.89 (in_seat=False, seat_overlap=0.00, in_table=False)",
+      "raw_candidate": "unknown",
+      "committed_state": "unknown",
+      "codes": [
+        "P_NEAR_NOT_SEATED"
+      ]
+    }
+  ],
+  "inference": {
+    "frames": 8,
+    "ms_per_frame_median": 37.8,
+    "ms_per_frame_all": [
+      2269.3,
+      42.0,
+      37.6,
+      36.3,
+      33.3,
+      38.0,
+      42.2,
+      37.7
+    ],
+    "imgsz": 640,
+    "conf_floor": 0.25,
+    "decision_conf_threshold": 0.5
+  },
+  "ingest": {
+    "posted": true,
+    "observations_ingested": 32,
+    "api_lab_seat_states": {
+      "LAB1": {
+        "physical_state": "occupied",
+        "source": "cv"
+      },
+      "LAB2": {
+        "physical_state": "unknown",
+        "source": "cv"
+      },
+      "LAB3": {
+        "physical_state": "available",
+        "source": "cv"
+      },
+      "LAB4": {
+        "physical_state": "unknown",
+        "source": "cv"
+      }
+    },
+    "summary": "ส่ง 32 observation เข้า /api/ingest/observations (CV-LAB)"
+  },
+  "robustness_checks": [
+    {
+      "label": "same image darkened x0.12 (synthetic perturbation, quality-gate check)",
+      "qualities": [
+        "dark",
+        "dark",
+        "dark"
+      ],
+      "brightness": [
+        13.4,
+        13.4,
+        13.4
+      ],
+      "detections_in_dark_frame": [
+        6,
+        6,
+        6
+      ],
+      "final_states": {
+        "LAB1": "unknown",
+        "LAB2": "unknown",
+        "LAB3": "unknown",
+        "LAB4": "unknown"
+      }
+    },
+    {
+      "label": "missing source file (camera-lost analogue)",
+      "qualities": [
+        "no_frame",
+        "no_frame"
+      ],
+      "final_states": {
+        "LAB1": "unknown",
+        "LAB2": "unknown",
+        "LAB3": "unknown",
+        "LAB4": "unknown"
+      },
+      "errors": [
+        "cv2.imread returned None for C:\\Users\\ebz14\\CPE447\\Project\\SmartLibraryNEXT\\SmartLibrary_NEXT_V2_Ready_Handoff\\SmartLibrary_NEXT_V2_Ready\\cv\\__missing_source__.jpg (file missing or unreadable)",
+        "cv2.imread returned None for C:\\Users\\ebz14\\CPE447\\Project\\SmartLibraryNEXT\\SmartLibrary_NEXT_V2_Ready_Handoff\\SmartLibrary_NEXT_V2_Ready\\cv\\__missing_source__.jpg (file missing or unreadable)"
+      ]
+    }
+  ],
+  "annotated_image": "annotated_cv20261014224004.jpg",
+  "errors": [],
+  "frames_log_file": "run_cv20261014224004.json"
+}

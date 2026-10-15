@@ -1,0 +1,27 @@
+{
+  "name": "smartlibrary-next-web",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "e2e": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/noto-sans-thai": "^5.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.53.0",
+    "@tailwindcss/vite": "4.1.8",
+    "@types/react": "18.3.23",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "4.5.0",
+    "tailwindcss": "4.1.8",
+    "typescript": "5.8.3",
+    "vite": "6.3.5"
+  }
+}

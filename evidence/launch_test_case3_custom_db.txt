@@ -1,0 +1,20 @@
+﻿== Smart Library NEXT V2 (local demo) ==
+Project: C:\Users\ebz14\CPE447\Project\SmartLibraryNEXT\SmartLibrary_NEXT_V2_Ready_Handoff\SmartLibrary_NEXT_V2_Ready
+[1/3] Python venv OK (C:\Users\ebz14\CPE447\Project\SmartLibraryNEXT\SmartLibrary_NEXT_V2_Ready_Handoff\SmartLibrary_NEXT_V2_Ready\.venv\Scripts\python.exe)
+[2/3] Frontend build OK (apps\web\dist)
+[3/3] Starting server at http://127.0.0.1:8011  (mode=demo)
+      Student:  http://127.0.0.1:8011/
+      Staff:    http://127.0.0.1:8011/#/staff   (demo PIN: staff-demo-2569, override with SL_STAFF_TOKEN)
+      Scenario: http://127.0.0.1:8011/#/lab     CV Lab: http://127.0.0.1:8011/#/cv
+      All data on this screen is SIMULATION unless a source says 'cv'. Ctrl+C to stop.
+powershell : INFO:     Started server process [43076]
+At line:1 char:356
++ ... _case3.db"; powershell -ExecutionPolicy Bypass -File scripts\start_de ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (INFO:     Started server process [43076]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8011 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57986 - "GET /api/health HTTP/1.1" 200 OK

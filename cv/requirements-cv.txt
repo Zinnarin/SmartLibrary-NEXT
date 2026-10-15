@@ -1,0 +1,5 @@
+# OPTIONAL real-CV environment (separate venv .venv-cv). The demo app does NOT need this.
+# torch/torchvision CPU wheels: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+ultralytics
+requests
+# exact installed versions are recorded in evidence/cv/cv_env_freeze.txt

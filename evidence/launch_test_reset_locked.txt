@@ -1,0 +1,6 @@
+﻿== Smart Library NEXT V2 (local demo) ==
+Project: C:\Users\ebz14\CPE447\Project\SmartLibraryNEXT\SmartLibrary_NEXT_V2_Ready_Handoff\SmartLibrary_NEXT_V2_Ready
+[1/3] Python venv OK (C:\Users\ebz14\CPE447\Project\SmartLibraryNEXT\SmartLibrary_NEXT_V2_Ready_Handoff\SmartLibrary_NEXT_V2_Ready\.venv\Scripts\python.exe)
+[2/3] Frontend build OK (apps\web\dist)
+ERROR: -Reset refused: a Smart Library server is still running (pid 45272, 41476).
+       Stop it first (Ctrl+C in its window). Nothing was deleted.

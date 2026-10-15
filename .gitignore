@@ -1,0 +1,66 @@
+# Smart Library NEXT — files that must NEVER be committed (team rule, see docs/team_v3/TEAM_SETUP_REPORT.md)
+
+# --- Python virtual environments & caches (each member creates their own) ---
+.venv/
+.venv-cv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest_tmp/
+.mypy_cache/
+.ruff_cache/
+
+# --- Node / frontend build output (rebuilt by scripts/start_demo_windows.ps1) ---
+node_modules/
+apps/web/dist/
+apps/web/test-results/
+apps/web/playwright-report/
+apps/web/blob-report/
+npm-debug.log*
+
+# --- Databases (demo DB is re-seeded automatically; real data must never be committed) ---
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+services/api/data/
+
+# --- Secrets / local configuration ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+secrets/
+
+# --- Model weights (download per member, see README "Optional real CV") ---
+*.pt
+*.onnx
+*.engine
+*.weights
+cv/models/
+
+# --- Camera footage / raw frames (may show people: consent + privacy) ---
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+cv/experiments/**/raw/
+cv/experiments/**/frames/
+
+# --- Generated artefacts ---
+presentation/screenshots/crops/
+
+# --- Local tool / editor / OS files ---
+.claude/
+.vscode/
+.idea/
+~$*
+*.tmp
+Thumbs.db
+desktop.ini
+.DS_Store

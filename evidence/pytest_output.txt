@@ -1,0 +1,125 @@
+============================= test session starts =============================
+platform win32 -- Python 3.10.11, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\ebz14\CPE447\Project\SmartLibraryNEXT\SmartLibrary_NEXT_V2_Ready_Handoff\SmartLibrary_NEXT_V2_Ready\.venv\Scripts\python.exe
+rootdir: C:\Users\ebz14\CPE447\Project\SmartLibraryNEXT\SmartLibrary_NEXT_V2_Ready_Handoff\SmartLibrary_NEXT_V2_Ready
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1
+collecting ... collected 53 items
+
+tests/test_api.py::test_T01_normal_counts_match_and_simulation_banner PASSED [  1%]
+tests/test_api.py::test_initial_seats_unknown_before_evidence PASSED     [  3%]
+tests/test_api.py::test_T02_quiet_power_hard_constraints PASSED          [  5%]
+tests/test_api.py::test_window_preference_is_soft_and_must_is_hard PASSED [  7%]
+tests/test_api.py::test_T03_camera_lost_then_ttl_stale PASSED            [  9%]
+tests/test_api.py::test_recovered_requires_fresh_evidence PASSED         [ 11%]
+tests/test_api.py::test_T04_low_confidence_unknown PASSED                [ 13%]
+tests/test_api.py::test_T05_belongings_scenario_possibly_reserved PASSED [ 15%]
+tests/test_api.py::test_T07_maintenance_override_wins_and_is_audited PASSED [ 16%]
+tests/test_api.py::test_override_expiry PASSED                           [ 18%]
+tests/test_api.py::test_T08_seatcheck_report_does_not_set_occupied PASSED [ 20%]
+tests/test_api.py::test_T09_resolve_with_reason_audits_and_pushes_websocket PASSED [ 22%]
+tests/test_api.py::test_reject_report_keeps_sensor_state PASSED          [ 24%]
+tests/test_api.py::test_T10_admin_requires_staff_token PASSED            [ 26%]
+tests/test_api.py::test_T10_report_rate_limit_duplicate_and_replay PASSED [ 28%]
+tests/test_api.py::test_demo_endpoints_hidden_in_production PASSED       [ 30%]
+tests/test_api.py::test_T11_groupfit_pairs_are_adjacent_and_eligible PASSED [ 32%]
+tests/test_api.py::test_T11_groupfit_excludes_reported_seat PASSED       [ 33%]
+tests/test_api.py::test_T12_routes_only_use_declared_edges PASSED        [ 35%]
+tests/test_api.py::test_T13_duplicate_and_out_of_order_observations PASSED [ 37%]
+tests/test_api.py::test_clock_skew_becomes_unknown PASSED                [ 39%]
+tests/test_api.py::test_source_contamination_guards PASSED               [ 41%]
+tests/test_api.py::test_T14_app_runs_without_cv_stack PASSED             [ 43%]
+tests/test_api.py::test_false_free_report_scenario PASSED                [ 45%]
+tests/test_api.py::test_exam_rush PASSED                                 [ 47%]
+tests/test_api.py::test_scenario_state_is_persisted_in_backend PASSED    [ 49%]
+tests/test_api.py::test_BUG012_index_html_is_not_cached PASSED           [ 50%]
+tests/test_reliability.py::test_recommendations_never_include_unsafe_states_across_scenarios PASSED [ 52%]
+tests/test_reliability.py::test_scenario_switch_is_smoothed_and_changing_seat_is_withheld PASSED [ 54%]
+tests/test_reliability.py::test_T07_override_wins_over_real_cv_ingest_path PASSED [ 56%]
+tests/test_reliability.py::test_staff_unknown_override_pending_inspection PASSED [ 58%]
+tests/test_reliability.py::test_camera_offline_is_immediate_and_stale_follows_ttl PASSED [ 60%]
+tests/test_reliability.py::test_heartbeat_timeout_marks_silent_camera_offline_without_lwt PASSED [ 62%]
+tests/test_reliability.py::test_seat_detail_and_layout_endpoints PASSED  [ 64%]
+tests/test_roi_geometry.py::test_point_in_polygon PASSED                 [ 66%]
+tests/test_roi_geometry.py::test_overlap_fraction PASSED                 [ 67%]
+tests/test_roi_geometry.py::test_person_anchor_is_hip_not_centre PASSED  [ 69%]
+tests/test_roi_geometry.py::test_walk_through_box_crossing_table_only PASSED [ 71%]
+tests/test_state_engine.py::test_never_observed_is_unknown_not_available PASSED [ 73%]
+tests/test_state_engine.py::test_one_empty_frame_is_not_available_T06 PASSED [ 75%]
+tests/test_state_engine.py::test_available_requires_consecutive_clean_frames PASSED [ 77%]
+tests/test_state_engine.py::test_available_streak_broken_by_bad_frame PASSED [ 79%]
+tests/test_state_engine.py::test_passerby_is_not_occupied_T06 PASSED     [ 81%]
+tests/test_state_engine.py::test_seated_person_becomes_occupied_after_smoothing PASSED [ 83%]
+tests/test_state_engine.py::test_cup_only_is_not_reserved_T06 PASSED     [ 84%]
+tests/test_state_engine.py::test_low_confidence_is_unknown_T04 PASSED    [ 86%]
+tests/test_state_engine.py::test_dark_frames_are_unknown PASSED          [ 88%]
+tests/test_state_engine.py::test_persistent_belongings_reserved_and_never_auto_released_T05 PASSED [ 90%]
+tests/test_state_engine.py::test_owner_returns_reserved_to_occupied PASSED [ 92%]
+tests/test_state_engine.py::test_out_of_order_observation_rejected_T13 PASSED [ 94%]
+tests/test_state_engine.py::test_stale_view_is_never_green PASSED        [ 96%]
+tests/test_state_engine.py::test_future_timestamp_never_gives_negative_age PASSED [ 98%]
+tests/test_state_engine.py::test_gap_longer_than_ttl_resets_to_unknown_BUG001 PASSED [100%]
+
+============================== warnings summary ===============================
+tests/test_api.py::test_T01_normal_counts_match_and_simulation_banner
+  C:\Users\ebz14\CPE447\Project\SmartLibraryNEXT\SmartLibrary_NEXT_V2_Ready_Handoff\SmartLibrary_NEXT_V2_Ready\.venv\lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=================================== PASSES ====================================
+- generated xml file: C:\Users\ebz14\CPE447\Project\SmartLibraryNEXT\SmartLibrary_NEXT_V2_Ready_Handoff\SmartLibrary_NEXT_V2_Ready\evidence\pytest_junit.xml -
+=========================== short test summary info ===========================
+PASSED tests/test_api.py::test_T01_normal_counts_match_and_simulation_banner
+PASSED tests/test_api.py::test_initial_seats_unknown_before_evidence
+PASSED tests/test_api.py::test_T02_quiet_power_hard_constraints
+PASSED tests/test_api.py::test_window_preference_is_soft_and_must_is_hard
+PASSED tests/test_api.py::test_T03_camera_lost_then_ttl_stale
+PASSED tests/test_api.py::test_recovered_requires_fresh_evidence
+PASSED tests/test_api.py::test_T04_low_confidence_unknown
+PASSED tests/test_api.py::test_T05_belongings_scenario_possibly_reserved
+PASSED tests/test_api.py::test_T07_maintenance_override_wins_and_is_audited
+PASSED tests/test_api.py::test_override_expiry
+PASSED tests/test_api.py::test_T08_seatcheck_report_does_not_set_occupied
+PASSED tests/test_api.py::test_T09_resolve_with_reason_audits_and_pushes_websocket
+PASSED tests/test_api.py::test_reject_report_keeps_sensor_state
+PASSED tests/test_api.py::test_T10_admin_requires_staff_token
+PASSED tests/test_api.py::test_T10_report_rate_limit_duplicate_and_replay
+PASSED tests/test_api.py::test_demo_endpoints_hidden_in_production
+PASSED tests/test_api.py::test_T11_groupfit_pairs_are_adjacent_and_eligible
+PASSED tests/test_api.py::test_T11_groupfit_excludes_reported_seat
+PASSED tests/test_api.py::test_T12_routes_only_use_declared_edges
+PASSED tests/test_api.py::test_T13_duplicate_and_out_of_order_observations
+PASSED tests/test_api.py::test_clock_skew_becomes_unknown
+PASSED tests/test_api.py::test_source_contamination_guards
+PASSED tests/test_api.py::test_T14_app_runs_without_cv_stack
+PASSED tests/test_api.py::test_false_free_report_scenario
+PASSED tests/test_api.py::test_exam_rush
+PASSED tests/test_api.py::test_scenario_state_is_persisted_in_backend
+PASSED tests/test_api.py::test_BUG012_index_html_is_not_cached
+PASSED tests/test_reliability.py::test_recommendations_never_include_unsafe_states_across_scenarios
+PASSED tests/test_reliability.py::test_scenario_switch_is_smoothed_and_changing_seat_is_withheld
+PASSED tests/test_reliability.py::test_T07_override_wins_over_real_cv_ingest_path
+PASSED tests/test_reliability.py::test_staff_unknown_override_pending_inspection
+PASSED tests/test_reliability.py::test_camera_offline_is_immediate_and_stale_follows_ttl
+PASSED tests/test_reliability.py::test_heartbeat_timeout_marks_silent_camera_offline_without_lwt
+PASSED tests/test_reliability.py::test_seat_detail_and_layout_endpoints
+PASSED tests/test_roi_geometry.py::test_point_in_polygon
+PASSED tests/test_roi_geometry.py::test_overlap_fraction
+PASSED tests/test_roi_geometry.py::test_person_anchor_is_hip_not_centre
+PASSED tests/test_roi_geometry.py::test_walk_through_box_crossing_table_only
+PASSED tests/test_state_engine.py::test_never_observed_is_unknown_not_available
+PASSED tests/test_state_engine.py::test_one_empty_frame_is_not_available_T06
+PASSED tests/test_state_engine.py::test_available_requires_consecutive_clean_frames
+PASSED tests/test_state_engine.py::test_available_streak_broken_by_bad_frame
+PASSED tests/test_state_engine.py::test_passerby_is_not_occupied_T06
+PASSED tests/test_state_engine.py::test_seated_person_becomes_occupied_after_smoothing
+PASSED tests/test_state_engine.py::test_cup_only_is_not_reserved_T06
+PASSED tests/test_state_engine.py::test_low_confidence_is_unknown_T04
+PASSED tests/test_state_engine.py::test_dark_frames_are_unknown
+PASSED tests/test_state_engine.py::test_persistent_belongings_reserved_and_never_auto_released_T05
+PASSED tests/test_state_engine.py::test_owner_returns_reserved_to_occupied
+PASSED tests/test_state_engine.py::test_out_of_order_observation_rejected_T13
+PASSED tests/test_state_engine.py::test_stale_view_is_never_green
+PASSED tests/test_state_engine.py::test_future_timestamp_never_gives_negative_age
+PASSED tests/test_state_engine.py::test_gap_longer_than_ttl_resets_to_unknown_BUG001
+======================= 53 passed, 1 warning in 35.11s ========================

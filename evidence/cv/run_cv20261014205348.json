@@ -1,0 +1,1865 @@
+{
+  "status": "WORKING_TESTED",
+  "scope": "เฉพาะ pipeline บนภาพตัวอย่างของ Ultralytics — ไม่ใช่ภาพห้องสมุด",
+  "library_cv_status": "BLOCKED",
+  "library_cv_blocker": "ไม่มีวิดีโอ/ภาพห้องสมุดที่ได้รับอนุญาต และไม่ได้รับอนุญาตใช้ webcam ในเซสชันนี้ จึงยังไม่มีการวัดความแม่นยำบนที่นั่งจริง",
+  "headline_th": "รัน yolo11n จริง 8 เฟรม (ภาพนิ่งเดิมซ้ำ) + ROI 4 จุด → state engine เดียวกับระบบ → ส่งเข้า API เป็น source='cv'",
+  "not_claimed_th": [
+    "ไม่ใช่ภาพจากห้องสมุดหรือกล้อง CCTV ของมหาวิทยาลัย",
+    "ROI วาดด้วยมือบนภาพตัวอย่างเพื่อทดสอบทุกกิ่งของ decision logic ไม่ใช่ที่นั่งจริง",
+    "ไม่มี ground truth ที่ติดป้ายโดยมนุษย์ → ไม่มี accuracy / mAP / False Available ของ CV",
+    "ไม่ได้ fine-tune โมเดล ใช้ COCO pretrained weights"
+  ],
+  "run_id": "cv20261014205348",
+  "run_at_utc": "2026-10-14T13:54:01.082Z",
+  "model": {
+    "name": "yolo11n",
+    "weights": "yolo11n.pt",
+    "weights_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "ultralytics_version": "8.4.177",
+    "task": "detect",
+    "num_classes": 80,
+    "pretrained_dataset": "COCO (80 classes) - pretrained weights, NOT fine-tuned by this project",
+    "has_literal_bag_class": false,
+    "belongings_classes_present": [
+      "backpack",
+      "book",
+      "handbag",
+      "laptop",
+      "suitcase"
+    ]
+  },
+  "environment": {
+    "python": "3.10.11",
+    "torch_version": "2.14.1+cpu",
+    "cuda_available": false,
+    "device": "cpu (torch CPU build; GPU not used)",
+    "os": "Windows 10 (10.0.26300)",
+    "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel"
+  },
+  "source": {
+    "description": "ultralytics/assets/bus.jpg (ภาพตัวอย่างที่มากับแพ็กเกจ ultralytics)",
+    "path": "C:\\Users\\ebz14\\CPE447\\Project\\SmartLibraryNEXT\\SmartLibrary_NEXT_V2_Ready_Handoff\\SmartLibrary_NEXT_V2_Ready\\.venv-cv\\lib\\site-packages\\ultralytics\\assets\\bus.jpg",
+    "sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "permission": "ภาพตัวอย่างที่แจกจ่ายมากับแพ็กเกจ ultralytics (AGPL-3.0) ใช้ทดสอบในเครื่องเท่านั้น ไม่เผยแพร่ภาพบุคคลต่อสาธารณะ",
+    "frames_note": "ภาพนิ่ง 1 ภาพ ประมวลผลซ้ำ 8 ครั้ง ห่างกัน 1.0 วินาที เพื่อให้ผ่าน temporal smoothing (ทุกครั้งคือ inference จริง)"
+  },
+  "rois": [
+    {
+      "seat_id": "LAB1",
+      "note": "Deliberate limitation test: seat polygon covers the hip area of a STANDING person (beige coat). A box+ROI rule cannot tell standing from sitting if the ROI is not calibrated to a real seat.",
+      "detections_summary": "bus 0.94 (in_seat=False, seat_overlap=0.06, in_table=False), person 0.88 (in_seat=True, seat_overlap=0.41, in_table=False), person 0.86 (in_seat=False, seat_overlap=0.07, in_table=False), person 0.62 (in_seat=False, seat_overlap=0.09, in_table=False)",
+      "raw_candidate": "occupied",
+      "committed_state": "occupied",
+      "codes": [
+        "P_SEATED"
+      ]
+    },
+    {
+      "seat_id": "LAB2",
+      "note": "Person (black coat) is next to the ROI; hip point outside the seat polygon -> expected ambiguous, not Occupied.",
+      "detections_summary": "bus 0.94 (in_seat=False, seat_overlap=0.03, in_table=False), person 0.86 (in_seat=False, seat_overlap=0.04, in_table=False)",
+      "raw_candidate": "unknown",
+      "committed_state": "unknown",
+      "codes": [
+        "P_NEAR_NOT_SEATED"
+      ]
+    },
+    {
+      "seat_id": "LAB3",
+      "note": "Empty pavement, nobody inside -> expected Available only after repeated clean frames.",
+      "detections_summary": "ไม่มี",
+      "raw_candidate": "available",
+      "committed_state": "available",
+      "codes": [
+        "E_EMPTY_VISIBLE"
+      ]
+    },
+    {
+      "seat_id": "LAB4",
+      "note": "Walking person on the right crosses the table polygon; hip point not in the seat polygon -> walk-through must not become Occupied.",
+      "detections_summary": "bus 0.94 (in_seat=False, seat_overlap=0.00, in_table=False), person 0.89 (in_seat=False, seat_overlap=0.00, in_table=False)",
+      "raw_candidate": "unknown",
+      "committed_state": "unknown",
+      "codes": [
+        "P_NEAR_NOT_SEATED"
+      ]
+    }
+  ],
+  "inference": {
+    "frames": 8,
+    "ms_per_frame_median": 41.0,
+    "ms_per_frame_all": [
+      2807.0,
+      44.5,
+      40.3,
+      41.0,
+      41.4,
+      38.6,
+      40.9,
+      38.2
+    ],
+    "imgsz": 640,
+    "conf_floor": 0.25,
+    "decision_conf_threshold": 0.5
+  },
+  "ingest": {
+    "posted": true,
+    "observations_ingested": 32,
+    "api_lab_seat_states": {
+      "LAB1": {
+        "physical_state": "occupied",
+        "source": "cv"
+      },
+      "LAB2": {
+        "physical_state": "unknown",
+        "source": "cv"
+      },
+      "LAB3": {
+        "physical_state": "available",
+        "source": "cv"
+      },
+      "LAB4": {
+        "physical_state": "unknown",
+        "source": "cv"
+      }
+    },
+    "summary": "ส่ง 32 observation เข้า /api/ingest/observations (CV-LAB)"
+  },
+  "robustness_checks": [
+    {
+      "label": "same image darkened x0.12 (synthetic perturbation, quality-gate check)",
+      "qualities": [
+        "dark",
+        "dark",
+        "dark"
+      ],
+      "brightness": [
+        13.4,
+        13.4,
+        13.4
+      ],
+      "detections_in_dark_frame": [
+        6,
+        6,
+        6
+      ],
+      "final_states": {
+        "LAB1": "unknown",
+        "LAB2": "unknown",
+        "LAB3": "unknown",
+        "LAB4": "unknown"
+      }
+    },
+    {
+      "label": "missing source file (camera-lost analogue)",
+      "qualities": [
+        "no_frame",
+        "no_frame"
+      ],
+      "final_states": {
+        "LAB1": "unknown",
+        "LAB2": "unknown",
+        "LAB3": "unknown",
+        "LAB4": "unknown"
+      },
+      "errors": [
+        "cv2.imread returned None for C:\\Users\\ebz14\\CPE447\\Project\\SmartLibraryNEXT\\SmartLibrary_NEXT_V2_Ready_Handoff\\SmartLibrary_NEXT_V2_Ready\\cv\\__missing_source__.jpg (file missing or unreadable)",
+        "cv2.imread returned None for C:\\Users\\ebz14\\CPE447\\Project\\SmartLibraryNEXT\\SmartLibrary_NEXT_V2_Ready_Handoff\\SmartLibrary_NEXT_V2_Ready\\cv\\__missing_source__.jpg (file missing or unreadable)"
+      ]
+    }
+  ],
+  "annotated_image": "annotated_cv20261014205348.jpg",
+  "errors": [],
+  "frames_log_file": "run_cv20261014205348.json",
+  "frames_log": [
+    {
+      "frame": 0,
+      "observed_at_utc": "2026-10-14T13:53:48.849Z",
+      "quality": "ok",
+      "quality_metrics": {
+        "brightness_mean": 116.4,
+        "laplacian_var": 3619.2
+      },
+      "inference_ms": 2807.0,
+      "detections": [
+        {
+          "cls": "bus",
+          "conf": 0.9401524662971497,
+          "bbox": [
+            3.8327178955078125,
+            229.36424255371094,
+            796.194580078125,
+            728.4122924804688
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8882198929786682,
+          "bbox": [
+            671.0172119140625,
+            394.83306884765625,
+            809.8097534179688,
+            878.7124633789062
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8782547116279602,
+          "bbox": [
+            47.404727935791016,
+            399.5651550292969,
+            239.30062866210938,
+            904.1949462890625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8557725548744202,
+          "bbox": [
+            223.05899047851562,
+            408.6886291503906,
+            344.4676208496094,
+            860.435791015625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.6219191551208496,
+          "bbox": [
+            0.021725893020629883,
+            556.0685424804688,
+            68.88555145263672,
+            872.3591918945312
+          ]
+        }
+      ],
+      "seats": {
+        "LAB1": {
+          "raw_candidate": "occupied",
+          "codes": [
+            "P_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.058453857636672275,
+              "table_overlap": 0.056900566631464616,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8782547116279602,
+              "in_seat": true,
+              "in_table": false,
+              "seat_overlap": 0.4073483014712356,
+              "table_overlap": 0.23144789856320203,
+              "bbox": [
+                47.404727935791016,
+                399.5651550292969,
+                239.30062866210938,
+                904.1949462890625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.06795430495540958,
+              "table_overlap": 0.038610400542846354,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.6219191551208496,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.08974898975832045,
+              "table_overlap": 0.015882086282713172,
+              "bbox": [
+                0.021725893020629883,
+                556.0685424804688,
+                68.88555145263672,
+                872.3591918945312
+              ]
+            }
+          ]
+        },
+        "LAB2": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.02776171298762278,
+              "table_overlap": 0.048555150192183136,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.03956793497084405,
+              "table_overlap": 0.12972356765500012,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            }
+          ]
+        },
+        "LAB3": {
+          "raw_candidate": "available",
+          "codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "committed": "unknown",
+          "related_detections": []
+        },
+        "LAB4": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0021273964835923594,
+              "table_overlap": 0.0711004808896719,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8882198929786682,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0,
+              "table_overlap": 0.37199352159719873,
+              "bbox": [
+                671.0172119140625,
+                394.83306884765625,
+                809.8097534179688,
+                878.7124633789062
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "frame": 1,
+      "observed_at_utc": "2026-10-14T13:53:52.871Z",
+      "quality": "ok",
+      "quality_metrics": {
+        "brightness_mean": 116.4,
+        "laplacian_var": 3619.2
+      },
+      "inference_ms": 44.5,
+      "detections": [
+        {
+          "cls": "bus",
+          "conf": 0.9401524662971497,
+          "bbox": [
+            3.8327178955078125,
+            229.36424255371094,
+            796.194580078125,
+            728.4122924804688
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8882198929786682,
+          "bbox": [
+            671.0172119140625,
+            394.83306884765625,
+            809.8097534179688,
+            878.7124633789062
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8782547116279602,
+          "bbox": [
+            47.404727935791016,
+            399.5651550292969,
+            239.30062866210938,
+            904.1949462890625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8557725548744202,
+          "bbox": [
+            223.05899047851562,
+            408.6886291503906,
+            344.4676208496094,
+            860.435791015625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.6219191551208496,
+          "bbox": [
+            0.021725893020629883,
+            556.0685424804688,
+            68.88555145263672,
+            872.3591918945312
+          ]
+        }
+      ],
+      "seats": {
+        "LAB1": {
+          "raw_candidate": "occupied",
+          "codes": [
+            "P_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.058453857636672275,
+              "table_overlap": 0.056900566631464616,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8782547116279602,
+              "in_seat": true,
+              "in_table": false,
+              "seat_overlap": 0.4073483014712356,
+              "table_overlap": 0.23144789856320203,
+              "bbox": [
+                47.404727935791016,
+                399.5651550292969,
+                239.30062866210938,
+                904.1949462890625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.06795430495540958,
+              "table_overlap": 0.038610400542846354,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.6219191551208496,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.08974898975832045,
+              "table_overlap": 0.015882086282713172,
+              "bbox": [
+                0.021725893020629883,
+                556.0685424804688,
+                68.88555145263672,
+                872.3591918945312
+              ]
+            }
+          ]
+        },
+        "LAB2": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.02776171298762278,
+              "table_overlap": 0.048555150192183136,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.03956793497084405,
+              "table_overlap": 0.12972356765500012,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            }
+          ]
+        },
+        "LAB3": {
+          "raw_candidate": "available",
+          "codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "committed": "unknown",
+          "related_detections": []
+        },
+        "LAB4": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0021273964835923594,
+              "table_overlap": 0.0711004808896719,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8882198929786682,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0,
+              "table_overlap": 0.37199352159719873,
+              "bbox": [
+                671.0172119140625,
+                394.83306884765625,
+                809.8097534179688,
+                878.7124633789062
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "frame": 2,
+      "observed_at_utc": "2026-10-14T13:53:53.963Z",
+      "quality": "ok",
+      "quality_metrics": {
+        "brightness_mean": 116.4,
+        "laplacian_var": 3619.2
+      },
+      "inference_ms": 40.3,
+      "detections": [
+        {
+          "cls": "bus",
+          "conf": 0.9401524662971497,
+          "bbox": [
+            3.8327178955078125,
+            229.36424255371094,
+            796.194580078125,
+            728.4122924804688
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8882198929786682,
+          "bbox": [
+            671.0172119140625,
+            394.83306884765625,
+            809.8097534179688,
+            878.7124633789062
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8782547116279602,
+          "bbox": [
+            47.404727935791016,
+            399.5651550292969,
+            239.30062866210938,
+            904.1949462890625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8557725548744202,
+          "bbox": [
+            223.05899047851562,
+            408.6886291503906,
+            344.4676208496094,
+            860.435791015625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.6219191551208496,
+          "bbox": [
+            0.021725893020629883,
+            556.0685424804688,
+            68.88555145263672,
+            872.3591918945312
+          ]
+        }
+      ],
+      "seats": {
+        "LAB1": {
+          "raw_candidate": "occupied",
+          "codes": [
+            "P_SEATED"
+          ],
+          "committed": "occupied",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.058453857636672275,
+              "table_overlap": 0.056900566631464616,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8782547116279602,
+              "in_seat": true,
+              "in_table": false,
+              "seat_overlap": 0.4073483014712356,
+              "table_overlap": 0.23144789856320203,
+              "bbox": [
+                47.404727935791016,
+                399.5651550292969,
+                239.30062866210938,
+                904.1949462890625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.06795430495540958,
+              "table_overlap": 0.038610400542846354,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.6219191551208496,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.08974898975832045,
+              "table_overlap": 0.015882086282713172,
+              "bbox": [
+                0.021725893020629883,
+                556.0685424804688,
+                68.88555145263672,
+                872.3591918945312
+              ]
+            }
+          ]
+        },
+        "LAB2": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.02776171298762278,
+              "table_overlap": 0.048555150192183136,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.03956793497084405,
+              "table_overlap": 0.12972356765500012,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            }
+          ]
+        },
+        "LAB3": {
+          "raw_candidate": "available",
+          "codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "committed": "unknown",
+          "related_detections": []
+        },
+        "LAB4": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0021273964835923594,
+              "table_overlap": 0.0711004808896719,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8882198929786682,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0,
+              "table_overlap": 0.37199352159719873,
+              "bbox": [
+                671.0172119140625,
+                394.83306884765625,
+                809.8097534179688,
+                878.7124633789062
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "frame": 3,
+      "observed_at_utc": "2026-10-14T13:53:55.084Z",
+      "quality": "ok",
+      "quality_metrics": {
+        "brightness_mean": 116.4,
+        "laplacian_var": 3619.2
+      },
+      "inference_ms": 41.0,
+      "detections": [
+        {
+          "cls": "bus",
+          "conf": 0.9401524662971497,
+          "bbox": [
+            3.8327178955078125,
+            229.36424255371094,
+            796.194580078125,
+            728.4122924804688
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8882198929786682,
+          "bbox": [
+            671.0172119140625,
+            394.83306884765625,
+            809.8097534179688,
+            878.7124633789062
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8782547116279602,
+          "bbox": [
+            47.404727935791016,
+            399.5651550292969,
+            239.30062866210938,
+            904.1949462890625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8557725548744202,
+          "bbox": [
+            223.05899047851562,
+            408.6886291503906,
+            344.4676208496094,
+            860.435791015625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.6219191551208496,
+          "bbox": [
+            0.021725893020629883,
+            556.0685424804688,
+            68.88555145263672,
+            872.3591918945312
+          ]
+        }
+      ],
+      "seats": {
+        "LAB1": {
+          "raw_candidate": "occupied",
+          "codes": [
+            "P_SEATED"
+          ],
+          "committed": "occupied",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.058453857636672275,
+              "table_overlap": 0.056900566631464616,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8782547116279602,
+              "in_seat": true,
+              "in_table": false,
+              "seat_overlap": 0.4073483014712356,
+              "table_overlap": 0.23144789856320203,
+              "bbox": [
+                47.404727935791016,
+                399.5651550292969,
+                239.30062866210938,
+                904.1949462890625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.06795430495540958,
+              "table_overlap": 0.038610400542846354,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.6219191551208496,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.08974898975832045,
+              "table_overlap": 0.015882086282713172,
+              "bbox": [
+                0.021725893020629883,
+                556.0685424804688,
+                68.88555145263672,
+                872.3591918945312
+              ]
+            }
+          ]
+        },
+        "LAB2": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.02776171298762278,
+              "table_overlap": 0.048555150192183136,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.03956793497084405,
+              "table_overlap": 0.12972356765500012,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            }
+          ]
+        },
+        "LAB3": {
+          "raw_candidate": "available",
+          "codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "committed": "available",
+          "related_detections": []
+        },
+        "LAB4": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0021273964835923594,
+              "table_overlap": 0.0711004808896719,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8882198929786682,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0,
+              "table_overlap": 0.37199352159719873,
+              "bbox": [
+                671.0172119140625,
+                394.83306884765625,
+                809.8097534179688,
+                878.7124633789062
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "frame": 4,
+      "observed_at_utc": "2026-10-14T13:53:56.266Z",
+      "quality": "ok",
+      "quality_metrics": {
+        "brightness_mean": 116.4,
+        "laplacian_var": 3619.2
+      },
+      "inference_ms": 41.4,
+      "detections": [
+        {
+          "cls": "bus",
+          "conf": 0.9401524662971497,
+          "bbox": [
+            3.8327178955078125,
+            229.36424255371094,
+            796.194580078125,
+            728.4122924804688
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8882198929786682,
+          "bbox": [
+            671.0172119140625,
+            394.83306884765625,
+            809.8097534179688,
+            878.7124633789062
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8782547116279602,
+          "bbox": [
+            47.404727935791016,
+            399.5651550292969,
+            239.30062866210938,
+            904.1949462890625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8557725548744202,
+          "bbox": [
+            223.05899047851562,
+            408.6886291503906,
+            344.4676208496094,
+            860.435791015625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.6219191551208496,
+          "bbox": [
+            0.021725893020629883,
+            556.0685424804688,
+            68.88555145263672,
+            872.3591918945312
+          ]
+        }
+      ],
+      "seats": {
+        "LAB1": {
+          "raw_candidate": "occupied",
+          "codes": [
+            "P_SEATED"
+          ],
+          "committed": "occupied",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.058453857636672275,
+              "table_overlap": 0.056900566631464616,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8782547116279602,
+              "in_seat": true,
+              "in_table": false,
+              "seat_overlap": 0.4073483014712356,
+              "table_overlap": 0.23144789856320203,
+              "bbox": [
+                47.404727935791016,
+                399.5651550292969,
+                239.30062866210938,
+                904.1949462890625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.06795430495540958,
+              "table_overlap": 0.038610400542846354,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.6219191551208496,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.08974898975832045,
+              "table_overlap": 0.015882086282713172,
+              "bbox": [
+                0.021725893020629883,
+                556.0685424804688,
+                68.88555145263672,
+                872.3591918945312
+              ]
+            }
+          ]
+        },
+        "LAB2": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.02776171298762278,
+              "table_overlap": 0.048555150192183136,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.03956793497084405,
+              "table_overlap": 0.12972356765500012,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            }
+          ]
+        },
+        "LAB3": {
+          "raw_candidate": "available",
+          "codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "committed": "available",
+          "related_detections": []
+        },
+        "LAB4": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0021273964835923594,
+              "table_overlap": 0.0711004808896719,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8882198929786682,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0,
+              "table_overlap": 0.37199352159719873,
+              "bbox": [
+                671.0172119140625,
+                394.83306884765625,
+                809.8097534179688,
+                878.7124633789062
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "frame": 5,
+      "observed_at_utc": "2026-10-14T13:53:57.435Z",
+      "quality": "ok",
+      "quality_metrics": {
+        "brightness_mean": 116.4,
+        "laplacian_var": 3619.2
+      },
+      "inference_ms": 38.6,
+      "detections": [
+        {
+          "cls": "bus",
+          "conf": 0.9401524662971497,
+          "bbox": [
+            3.8327178955078125,
+            229.36424255371094,
+            796.194580078125,
+            728.4122924804688
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8882198929786682,
+          "bbox": [
+            671.0172119140625,
+            394.83306884765625,
+            809.8097534179688,
+            878.7124633789062
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8782547116279602,
+          "bbox": [
+            47.404727935791016,
+            399.5651550292969,
+            239.30062866210938,
+            904.1949462890625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8557725548744202,
+          "bbox": [
+            223.05899047851562,
+            408.6886291503906,
+            344.4676208496094,
+            860.435791015625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.6219191551208496,
+          "bbox": [
+            0.021725893020629883,
+            556.0685424804688,
+            68.88555145263672,
+            872.3591918945312
+          ]
+        }
+      ],
+      "seats": {
+        "LAB1": {
+          "raw_candidate": "occupied",
+          "codes": [
+            "P_SEATED"
+          ],
+          "committed": "occupied",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.058453857636672275,
+              "table_overlap": 0.056900566631464616,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8782547116279602,
+              "in_seat": true,
+              "in_table": false,
+              "seat_overlap": 0.4073483014712356,
+              "table_overlap": 0.23144789856320203,
+              "bbox": [
+                47.404727935791016,
+                399.5651550292969,
+                239.30062866210938,
+                904.1949462890625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.06795430495540958,
+              "table_overlap": 0.038610400542846354,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.6219191551208496,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.08974898975832045,
+              "table_overlap": 0.015882086282713172,
+              "bbox": [
+                0.021725893020629883,
+                556.0685424804688,
+                68.88555145263672,
+                872.3591918945312
+              ]
+            }
+          ]
+        },
+        "LAB2": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.02776171298762278,
+              "table_overlap": 0.048555150192183136,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.03956793497084405,
+              "table_overlap": 0.12972356765500012,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            }
+          ]
+        },
+        "LAB3": {
+          "raw_candidate": "available",
+          "codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "committed": "available",
+          "related_detections": []
+        },
+        "LAB4": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0021273964835923594,
+              "table_overlap": 0.0711004808896719,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8882198929786682,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0,
+              "table_overlap": 0.37199352159719873,
+              "bbox": [
+                671.0172119140625,
+                394.83306884765625,
+                809.8097534179688,
+                878.7124633789062
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "frame": 6,
+      "observed_at_utc": "2026-10-14T13:53:58.559Z",
+      "quality": "ok",
+      "quality_metrics": {
+        "brightness_mean": 116.4,
+        "laplacian_var": 3619.2
+      },
+      "inference_ms": 40.9,
+      "detections": [
+        {
+          "cls": "bus",
+          "conf": 0.9401524662971497,
+          "bbox": [
+            3.8327178955078125,
+            229.36424255371094,
+            796.194580078125,
+            728.4122924804688
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8882198929786682,
+          "bbox": [
+            671.0172119140625,
+            394.83306884765625,
+            809.8097534179688,
+            878.7124633789062
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8782547116279602,
+          "bbox": [
+            47.404727935791016,
+            399.5651550292969,
+            239.30062866210938,
+            904.1949462890625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8557725548744202,
+          "bbox": [
+            223.05899047851562,
+            408.6886291503906,
+            344.4676208496094,
+            860.435791015625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.6219191551208496,
+          "bbox": [
+            0.021725893020629883,
+            556.0685424804688,
+            68.88555145263672,
+            872.3591918945312
+          ]
+        }
+      ],
+      "seats": {
+        "LAB1": {
+          "raw_candidate": "occupied",
+          "codes": [
+            "P_SEATED"
+          ],
+          "committed": "occupied",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.058453857636672275,
+              "table_overlap": 0.056900566631464616,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8782547116279602,
+              "in_seat": true,
+              "in_table": false,
+              "seat_overlap": 0.4073483014712356,
+              "table_overlap": 0.23144789856320203,
+              "bbox": [
+                47.404727935791016,
+                399.5651550292969,
+                239.30062866210938,
+                904.1949462890625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.06795430495540958,
+              "table_overlap": 0.038610400542846354,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.6219191551208496,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.08974898975832045,
+              "table_overlap": 0.015882086282713172,
+              "bbox": [
+                0.021725893020629883,
+                556.0685424804688,
+                68.88555145263672,
+                872.3591918945312
+              ]
+            }
+          ]
+        },
+        "LAB2": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.02776171298762278,
+              "table_overlap": 0.048555150192183136,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.03956793497084405,
+              "table_overlap": 0.12972356765500012,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            }
+          ]
+        },
+        "LAB3": {
+          "raw_candidate": "available",
+          "codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "committed": "available",
+          "related_detections": []
+        },
+        "LAB4": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0021273964835923594,
+              "table_overlap": 0.0711004808896719,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8882198929786682,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0,
+              "table_overlap": 0.37199352159719873,
+              "bbox": [
+                671.0172119140625,
+                394.83306884765625,
+                809.8097534179688,
+                878.7124633789062
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "frame": 7,
+      "observed_at_utc": "2026-10-14T13:53:59.678Z",
+      "quality": "ok",
+      "quality_metrics": {
+        "brightness_mean": 116.4,
+        "laplacian_var": 3619.2
+      },
+      "inference_ms": 38.2,
+      "detections": [
+        {
+          "cls": "bus",
+          "conf": 0.9401524662971497,
+          "bbox": [
+            3.8327178955078125,
+            229.36424255371094,
+            796.194580078125,
+            728.4122924804688
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8882198929786682,
+          "bbox": [
+            671.0172119140625,
+            394.83306884765625,
+            809.8097534179688,
+            878.7124633789062
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8782547116279602,
+          "bbox": [
+            47.404727935791016,
+            399.5651550292969,
+            239.30062866210938,
+            904.1949462890625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.8557725548744202,
+          "bbox": [
+            223.05899047851562,
+            408.6886291503906,
+            344.4676208496094,
+            860.435791015625
+          ]
+        },
+        {
+          "cls": "person",
+          "conf": 0.6219191551208496,
+          "bbox": [
+            0.021725893020629883,
+            556.0685424804688,
+            68.88555145263672,
+            872.3591918945312
+          ]
+        }
+      ],
+      "seats": {
+        "LAB1": {
+          "raw_candidate": "occupied",
+          "codes": [
+            "P_SEATED"
+          ],
+          "committed": "occupied",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.058453857636672275,
+              "table_overlap": 0.056900566631464616,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8782547116279602,
+              "in_seat": true,
+              "in_table": false,
+              "seat_overlap": 0.4073483014712356,
+              "table_overlap": 0.23144789856320203,
+              "bbox": [
+                47.404727935791016,
+                399.5651550292969,
+                239.30062866210938,
+                904.1949462890625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.06795430495540958,
+              "table_overlap": 0.038610400542846354,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.6219191551208496,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.08974898975832045,
+              "table_overlap": 0.015882086282713172,
+              "bbox": [
+                0.021725893020629883,
+                556.0685424804688,
+                68.88555145263672,
+                872.3591918945312
+              ]
+            }
+          ]
+        },
+        "LAB2": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.02776171298762278,
+              "table_overlap": 0.048555150192183136,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8557725548744202,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.03956793497084405,
+              "table_overlap": 0.12972356765500012,
+              "bbox": [
+                223.05899047851562,
+                408.6886291503906,
+                344.4676208496094,
+                860.435791015625
+              ]
+            }
+          ]
+        },
+        "LAB3": {
+          "raw_candidate": "available",
+          "codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "committed": "available",
+          "related_detections": []
+        },
+        "LAB4": {
+          "raw_candidate": "unknown",
+          "codes": [
+            "P_NEAR_NOT_SEATED"
+          ],
+          "committed": "unknown",
+          "related_detections": [
+            {
+              "cls": "bus",
+              "conf": 0.9401524662971497,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0021273964835923594,
+              "table_overlap": 0.0711004808896719,
+              "bbox": [
+                3.8327178955078125,
+                229.36424255371094,
+                796.194580078125,
+                728.4122924804688
+              ]
+            },
+            {
+              "cls": "person",
+              "conf": 0.8882198929786682,
+              "in_seat": false,
+              "in_table": false,
+              "seat_overlap": 0.0,
+              "table_overlap": 0.37199352159719873,
+              "bbox": [
+                671.0172119140625,
+                394.83306884765625,
+                809.8097534179688,
+                878.7124633789062
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

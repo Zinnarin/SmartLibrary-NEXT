@@ -1,0 +1,32 @@
+{
+  "measured_at_utc": "2026-10-14T13:28:54+00:00",
+  "what": "REST staff override (POST/DELETE) -> WebSocket delta received by a client, loopback 127.0.0.1",
+  "not_what": "not camera-event latency, not over Wi-Fi/LAN, not production hardware",
+  "machine": "Windows 10 / Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "trials": 20,
+  "ms": [
+    99.5,
+    19.5,
+    55.2,
+    55.6,
+    66.7,
+    65.8,
+    19.6,
+    28.0,
+    17.8,
+    32.1,
+    31.1,
+    36.6,
+    23.2,
+    27.1,
+    46.8,
+    59.9,
+    41.3,
+    45.6,
+    89.2,
+    71.2
+  ],
+  "median_ms": 43.5,
+  "p90_ms": 71.2,
+  "max_ms": 99.5
+}

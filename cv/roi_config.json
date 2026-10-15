@@ -1,0 +1,31 @@
+{
+  "source_image": "bus.jpg",
+  "image_size": [810, 1080],
+  "calibration_note": "Hand-drawn on the Ultralytics sample image (810x1080) BEFORE running detection, only to exercise each branch of the decision logic. These are NOT library seats; pixel coordinates are unrelated to the floor-map SVG.",
+  "seats": [
+    {
+      "seat_id": "LAB1",
+      "note": "Deliberate limitation test: seat polygon covers the hip area of a STANDING person (beige coat). A box+ROI rule cannot tell standing from sitting if the ROI is not calibrated to a real seat.",
+      "seat_polygon": [[60, 600], [240, 600], [240, 820], [60, 820]],
+      "table_polygon": [[60, 470], [240, 470], [240, 595], [60, 595]]
+    },
+    {
+      "seat_id": "LAB2",
+      "note": "Person (black coat) is next to the ROI; hip point outside the seat polygon -> expected ambiguous, not Occupied.",
+      "seat_polygon": [[330, 650], [470, 650], [470, 800], [330, 800]],
+      "table_polygon": [[300, 480], [420, 480], [420, 640], [300, 640]]
+    },
+    {
+      "seat_id": "LAB3",
+      "note": "Empty pavement, nobody inside -> expected Available only after repeated clean frames.",
+      "seat_polygon": [[420, 880], [620, 880], [620, 1040], [420, 1040]],
+      "table_polygon": [[420, 760], [620, 760], [620, 870], [420, 870]]
+    },
+    {
+      "seat_id": "LAB4",
+      "note": "Walking person on the right crosses the table polygon; hip point not in the seat polygon -> walk-through must not become Occupied.",
+      "seat_polygon": [[560, 720], [660, 720], [660, 900], [560, 900]],
+      "table_polygon": [[640, 520], [810, 520], [810, 700], [640, 700]]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans Thai", "Leelawadee UI", "Tahoma", system-ui, sans-serif;
+}
+
+html, body { background: #f1f5f9; }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+
+.sim-banner {
+  background: repeating-linear-gradient(-45deg, #b45309 0 18px, #c2410c 18px 36px);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+.seat:focus-visible rect:first-of-type { outline: none; }
+.seat:focus-visible > rect { stroke: #0f172a; stroke-width: 4; }
+
+@keyframes dash { to { stroke-dashoffset: -36; } }
+.route-anim { animation: dash 1.2s linear infinite; }
+
+@keyframes pulse-ring { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.pulse { animation: pulse-ring 1.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .route-anim, .pulse { animation: none; }
+}

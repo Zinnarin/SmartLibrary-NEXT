@@ -1,0 +1,13 @@
+# Smart Library NEXT V2 - backend + tests (pinned versions actually installed and tested on 2026-10-14)
+fastapi==0.143.0
+starlette==1.7.0
+pydantic==2.14.1
+uvicorn[standard]==0.54.0
+websockets==16.1.1
+httpx==0.28.1
+pytest==9.1.1
+# tooling used to build the presentation / read the reference proposals
+python-pptx==1.0.2
+pypdf==6.20.1
+python-docx==1.2.0
+pillow==12.3.0
