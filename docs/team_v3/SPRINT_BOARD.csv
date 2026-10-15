@@ -1,0 +1,5 @@
+﻿owner,module,task,file_scope,deliverable,dependencies,status
+P1,CV,Inspect CiRA requirement; collect staged consented chair video,cv/run_cv.py; cv/roi.py; cv/experiments/,cv/experiments/README.md + logs + ROI + evidence tests,P2 ingest contract,not_started
+P2,Backend,Freeze exact /api/ingest contract and run contract tests,services/api/app/*; docs/api_contract_v3.md,docs/api_contract_v3.md + backend tests,P1 examples; P3/P4 types,not_started
+P3,Student UI,Source/freshness UI + student interaction test,apps/web/src/pages/StudentPage.tsx; FloorMap.tsx; SeatDetail.tsx; StudyMatch.tsx,screenshots + apps/web/e2e/student_v3.spec.ts,P2 API; P4 SeatCheckPanel import,not_started
+P4,Staff QA lead,Staff triage + end-to-end reliability + merge gate,StaffConsole.tsx; ScenarioLab.tsx; SeatCheckPanel.tsx; docs/team_v3/,evidence/team_v3/* + apps/web/e2e/staff_reliability_v3.spec.ts,P3 integration; P2 API,not_started

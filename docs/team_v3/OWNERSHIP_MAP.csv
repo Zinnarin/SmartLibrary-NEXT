@@ -1,0 +1,46 @@
+pattern,owner,approval_required_from,note
+evidence/team_v3/*,P4,,V3 evidence (each member may add files under evidence/team_v3/<role>/ via PR)
+evidence/*,FROZEN,P4,V2 evidence - never overwrite; V3 outputs go to evidence/team_v3/
+presentation/v3/*,P4,,new V3 presentation material
+presentation/*,FROZEN,P4,V2 deck/screenshots - do not overwrite progress_update_v2.pptx or screenshots
+reference/*,FROZEN,,original group proposals (contain student names/IDs - private repo only)
+templates/*,FROZEN,,
+verification/TEAM_V3_*,P4,,V3 acceptance/integration results
+verification/*,FROZEN,P4,V2 acceptance matrix + results
+docs/team_v3/*,P4,,team process docs (this folder)
+docs/api_contract_v3.md,P2,P1;P3;P4,frozen interface contract - consumers must review
+docs/DEMO_RUNBOOK_TH.md,P4,,demo runbook (P4 deliverable: updated runbook)
+docs/*,FROZEN,,original V2 spec documents
+CLAUDE_CODE_MASTER_PROMPT.md,FROZEN,,
+START_HERE.md,FROZEN,,
+README.md,P4,,integration README
+.github/*,P4,affected owner,CI / PR template / CODEOWNERS
+.gitignore,P4,,
+.gitattributes,P4,,
+pytest.ini,P4,P2,shared test config
+scripts/start_demo_windows.ps1,P4,P2,launch script (BUG-013 safety logic)
+scripts/run_tests_windows.ps1,P4,,
+scripts/check_ownership.py,P4,,
+scripts/*,P4,,presentation/evidence tooling
+cv/*,P1,,CV pipeline; note cv/run_cv.py imports services/api/app/engine (owned by P2)
+tests/test_cv_v3.py,P1,,new
+tests/test_roi_geometry.py,P1,,
+services/api/requirements.txt,P2,P4,dependency changes affect everyone
+services/api/app/*,P2,,backend incl. engine/ seed.py scenarios.py (demo reset)
+tests/conftest.py,P2,P1;P3;P4,shared fixtures - do not change unilaterally
+tests/test_api.py,P2,,V2 backend tests
+tests/test_state_engine.py,P2,,V2 engine tests
+tests/test_backend_v3.py,P2,,new
+tests/test_reliability.py,P4,P2,QA reliability tests (V2 stabilization)
+apps/web/src/live.tsx,P3,P4,live data provider; contains BUG-011 browser freshness guard
+apps/web/src/pages/StaffConsole.tsx,P4,,
+apps/web/src/pages/ScenarioLab.tsx,P4,P2,uses P2 demo APIs
+apps/web/src/components/SeatCheckPanel.tsx,P4,P3,new - P3 imports it into SeatDetail.tsx
+apps/web/src/pages/CvLab.tsx,P3,P1,P1 supplies payload/requirements
+apps/web/src/*,P3,,student UI: App.tsx api.ts labels.ts main.tsx styles.css pages/StudentPage.tsx components/*
+apps/web/e2e/student_v3.spec.ts,P3,,new
+apps/web/e2e/*,P4,,V2 regression suite + staff_reliability_v3.spec.ts
+apps/web/playwright.config.ts,P4,P3,
+apps/web/package.json,P3,P4,dependency changes affect everyone
+apps/web/package-lock.json,P3,P4,
+apps/web/*,P3,,vite/tsconfig/index.html

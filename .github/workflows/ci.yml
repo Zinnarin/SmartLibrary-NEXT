@@ -1,0 +1,42 @@
+# Smart Library NEXT - pull-request checks (UNVERIFIED on GitHub until the first push; the same
+# commands were run locally on a fresh clone, see docs/team_v3/TEAM_SETUP_REPORT.md).
+# Playwright e2e is NOT run here (config uses the locally installed Microsoft Edge); P4 runs it locally.
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: pip install -r services/api/requirements.txt
+      - run: python -m pytest -q
+      - name: ownership coverage (every tracked file has an owner, no never-commit files)
+        run: python scripts/check_ownership.py --audit
+      - name: ownership of this PR (informational - REVIEW lines need owner approval)
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: python scripts/check_ownership.py --owner auto --base origin/${{ github.base_ref }}
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci
+      - run: npm run build

@@ -1,0 +1,41 @@
+# PROPOSED GitHub CODEOWNERS — NOT ACTIVE.
+# To activate: replace each @P*_GITHUB_USERNAME with the member's real GitHub username,
+# then copy this file to .github/CODEOWNERS in a PR reviewed by all four members.
+# Enforcement ("Require review from Code Owners") needs branch protection; on a PRIVATE repo
+# that requires GitHub Pro/Team (see TEAM_SETUP_REPORT.md section 7). Without it, this file only
+# auto-requests reviewers. In GitHub CODEOWNERS the LAST matching line wins.
+# Mirrors docs/team_v3/OWNERSHIP_MAP.csv (which uses first-match order) - keep both in sync.
+
+*                                          @P4_GITHUB_USERNAME
+
+/cv/                                       @P1_GITHUB_USERNAME
+/tests/test_roi_geometry.py                @P1_GITHUB_USERNAME
+/tests/test_cv_v3.py                       @P1_GITHUB_USERNAME
+
+/services/api/                             @P2_GITHUB_USERNAME
+/services/api/requirements.txt             @P2_GITHUB_USERNAME @P4_GITHUB_USERNAME
+/tests/conftest.py                         @P2_GITHUB_USERNAME
+/tests/test_api.py                         @P2_GITHUB_USERNAME
+/tests/test_state_engine.py                @P2_GITHUB_USERNAME
+/tests/test_backend_v3.py                  @P2_GITHUB_USERNAME
+/docs/api_contract_v3.md                   @P2_GITHUB_USERNAME @P1_GITHUB_USERNAME @P3_GITHUB_USERNAME @P4_GITHUB_USERNAME
+
+/apps/web/                                 @P3_GITHUB_USERNAME
+/apps/web/package.json                     @P3_GITHUB_USERNAME @P4_GITHUB_USERNAME
+/apps/web/package-lock.json                @P3_GITHUB_USERNAME @P4_GITHUB_USERNAME
+/apps/web/src/live.tsx                     @P3_GITHUB_USERNAME @P4_GITHUB_USERNAME
+/apps/web/src/pages/CvLab.tsx              @P3_GITHUB_USERNAME @P1_GITHUB_USERNAME
+/apps/web/src/pages/StaffConsole.tsx       @P4_GITHUB_USERNAME
+/apps/web/src/pages/ScenarioLab.tsx        @P4_GITHUB_USERNAME @P2_GITHUB_USERNAME
+/apps/web/src/components/SeatCheckPanel.tsx @P4_GITHUB_USERNAME @P3_GITHUB_USERNAME
+/apps/web/e2e/                             @P4_GITHUB_USERNAME
+/apps/web/e2e/student_v3.spec.ts           @P3_GITHUB_USERNAME
+/apps/web/playwright.config.ts             @P4_GITHUB_USERNAME @P3_GITHUB_USERNAME
+
+/tests/test_reliability.py                 @P4_GITHUB_USERNAME @P2_GITHUB_USERNAME
+/scripts/                                  @P4_GITHUB_USERNAME
+/scripts/start_demo_windows.ps1            @P4_GITHUB_USERNAME @P2_GITHUB_USERNAME
+/pytest.ini                                @P4_GITHUB_USERNAME @P2_GITHUB_USERNAME
+/.github/                                  @P4_GITHUB_USERNAME
+/docs/team_v3/                             @P4_GITHUB_USERNAME
+/evidence/team_v3/                         @P4_GITHUB_USERNAME
