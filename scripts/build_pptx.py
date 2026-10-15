@@ -20,7 +20,7 @@ from pptx.util import Emu, Inches, Pt
 
 ROOT = Path(__file__).resolve().parents[1]
 SHOTS = ROOT / "presentation" / "screenshots"
-OUT = ROOT / "presentation" / "progress_update.pptx"
+OUT = ROOT / "artifacts" / "pptx" / "progress_update_draft.pptx"  # frozen V2 decks are never the default
 FONT = "Leelawadee UI"  # ships with Windows; renders Thai
 
 NAVY = RGBColor(0x0F, 0x17, 0x2A)
@@ -457,6 +457,12 @@ def build():
 if __name__ == "__main__":
     import sys
 
-    if len(sys.argv) > 1:  # optional output path, e.g. when the default deck is open in PowerPoint
-        OUT = ROOT / sys.argv[1]
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from artifacts_paths import assert_writable
+
+    args = [a for a in sys.argv[1:] if a != "--overwrite-frozen"]
+    if args:  # optional output path, e.g. presentation/v3/progress_update_v3.pptx
+        OUT = ROOT / args[0]
+    OUT = assert_writable(OUT, allow_frozen="--overwrite-frozen" in sys.argv)
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     build()

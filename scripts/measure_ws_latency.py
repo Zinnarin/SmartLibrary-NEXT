@@ -24,7 +24,7 @@ BASE = "http://127.0.0.1:8000"
 STAFF = {"X-Staff-Token": "staff-demo-2569"}
 
 
-async def main(trials: int, seat: str):
+async def main(trials: int, seat: str, out_path: str | None = None):
     lat = []
     async with websockets.connect(BASE.replace("http", "ws") + "/ws/seats", max_size=2**24) as ws:
         snap = json.loads(await ws.recv())
@@ -58,7 +58,13 @@ async def main(trials: int, seat: str):
         "p90_ms": round(sorted(lat)[int(0.9 * (len(lat) - 1))], 1),
         "max_ms": round(max(lat), 1),
     }
-    out = ROOT / "evidence" / "ws_latency.json"
+    import sys
+
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from artifacts_paths import artifact_dir, assert_writable
+
+    out = assert_writable(out_path) if out_path else artifact_dir() / "ws_latency.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(res, indent=2), encoding="utf-8")
     print(json.dumps(res, indent=2))
 
@@ -67,5 +73,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--trials", type=int, default=20)
     ap.add_argument("--seat", default="B07")
+    ap.add_argument("--out", default=None, help="default: artifacts/ws_latency.json (frozen V2 paths are refused)")
     a = ap.parse_args()
-    asyncio.run(main(a.trials, a.seat))
+    asyncio.run(main(a.trials, a.seat, a.out))

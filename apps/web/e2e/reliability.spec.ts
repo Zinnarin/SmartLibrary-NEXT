@@ -1,10 +1,8 @@
 import { expect, test, type Page } from "@playwright/test";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { SHOTS } from "./artifacts";
 
 /** Phase 2/3 verification: reliability + full student journey with console-error capture. */
-const HERE = path.dirname(fileURLToPath(import.meta.url));
-const SHOTS = path.resolve(HERE, "../../../presentation/screenshots");
 const STAFF = process.env.SL_STAFF_TOKEN || "staff-demo-2569";
 const seat = (p: Page, id: string) => p.locator(`[data-seat="${id}"]`);
 const recCards = (p: Page) => p.locator('article[data-testid^="rec-"]');

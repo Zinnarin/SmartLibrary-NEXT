@@ -32,6 +32,7 @@ tests/test_api.py,P2,,V2 backend tests
 tests/test_state_engine.py,P2,,V2 engine tests
 tests/test_backend_v3.py,P2,,new
 tests/test_reliability.py,P4,P2,QA reliability tests (V2 stabilization)
+tests/test_artifact_isolation.py,P4,,regression: tests/tools never write frozen V2 files
 apps/web/src/live.tsx,P3,P4,live data provider; contains BUG-011 browser freshness guard
 apps/web/src/pages/StaffConsole.tsx,P4,,
 apps/web/src/pages/ScenarioLab.tsx,P4,P2,uses P2 demo APIs

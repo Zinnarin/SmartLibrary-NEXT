@@ -35,8 +35,9 @@ cd apps\web; npm run dev     # http://127.0.0.1:5173 (proxy /api, /ws -> :8000)
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\run_tests_windows.ps1
 ```
-* `pytest` — state engine + API + WebSocket + security tests (`tests/`), output saved to `evidence/pytest_output.txt`
-* Playwright browser smoke path (`apps/web/e2e/demo.spec.ts`, ใช้ Microsoft Edge ที่ติดตั้งในเครื่อง) — รันเมื่อเซิร์ฟเวอร์เปิดอยู่ที่ :8000 และบันทึก screenshot จริงลง `presentation/screenshots/`
+* `pytest` — state engine + API + WebSocket + security + artifact-isolation tests (`tests/`)
+* Playwright browser suite (`apps/web/e2e/*.spec.ts`, ใช้ Microsoft Edge ที่ติดตั้งในเครื่อง) — รันเมื่อเซิร์ฟเวอร์เปิดอยู่ที่ :8000
+* ผลลัพธ์ทั้งหมด (log, JUnit, Playwright JSON, screenshot) ไปที่ `artifacts/` (ไม่ถูก commit; เปลี่ยนได้ด้วย env `SL_ARTIFACT_DIR`) — หลักฐาน V2 ใน `evidence/` และ `presentation/` **ถูก freeze และจะไม่ถูกเขียนทับ**; สคริปต์จบด้วย `check_ownership.py --frozen-clean`
 
 ## Optional real CV (P1)
 แยก venv เพื่อไม่ให้เดโมขึ้นกับ torch:
