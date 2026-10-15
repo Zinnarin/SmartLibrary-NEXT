@@ -2,7 +2,10 @@
 
 | ไฟล์ | สถานะ |
 |---|---|
-| `TEAM_SETUP_REPORT.md` | **อ่านก่อน** — ความพร้อมของ repo, ownership ที่ตรวจกับโค้ดจริงแล้ว, contract, ขั้นตอน GitHub, คำสั่งของแต่ละคน |
+| `TEAM_ONBOARDING_TH.md` | **สมาชิกใหม่อ่านก่อน** — clone, ติดตั้ง, เปิดแอป, ทดสอบ, branch, commit/push/PR, blocker, integration |
+| `tasks/P1_CV_TASK_GUIDE_TH.md` … `tasks/P4_STAFF_QA_TASK_GUIDE_TH.md` | งานของแต่ละคน (8 หัวข้อ) + Claude Code prompt พร้อมใช้ |
+| `GITHUB_TEAM_READY_REPORT.md` | สถานะ GitHub repo (private), branch, tag, CI, issues, การเชิญสมาชิก |
+| `TEAM_SETUP_REPORT.md` | ความพร้อมของ repo, ownership ที่ตรวจกับโค้ดจริงแล้ว, contract, ขั้นตอน GitHub (ก่อนสร้าง repo) |
 | `OWNERSHIP_MAP.csv` | **กฎที่ใช้จริง** (เครื่องตรวจได้ด้วย `python scripts/check_ownership.py`) — ถ้าขัดกับ path ใน `01_FILE_OWNERSHIP.md` หรือ `roles/*.md` ให้ยึดไฟล์นี้ |
 | `api_baseline_v2_openapi.json` | OpenAPI ที่ **สกัดจากโค้ด V2 จริง** (26 routes) — จุดเริ่มต้นให้ P2 เขียน `docs/api_contract_v3.md` |
 | `CODEOWNERS.proposed` | ร่าง CODEOWNERS (ยังไม่เปิดใช้ ต้องใส่ GitHub username ก่อน) |
