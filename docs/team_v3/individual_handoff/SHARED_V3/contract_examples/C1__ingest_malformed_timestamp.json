@@ -1,0 +1,9 @@
+{
+  "interface": "C1",
+  "name": "ingest_malformed_timestamp",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "response": {
+    "status": "UNHANDLED_EXCEPTION -> HTTP 500 in a real server",
+    "json": "ValueError(\"Invalid isoformat string: 'yesterday'\")"
+  }
+}

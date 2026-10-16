@@ -1,0 +1,21 @@
+{
+  "interface": "C3",
+  "name": "demo_reset",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/demo/reset",
+    "query": null,
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "ok": true,
+      "message_th": "รีเซ็ตฐานข้อมูลสาธิตและเริ่ม NORMAL ใหม่"
+    }
+  }
+}

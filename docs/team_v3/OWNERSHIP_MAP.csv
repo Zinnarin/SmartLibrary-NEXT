@@ -8,6 +8,8 @@ templates/*,FROZEN,,
 verification/TEAM_V3_*,P4,,V3 acceptance/integration results
 verification/*,FROZEN,P4,V2 acceptance matrix + results
 docs/team_v3/*,P4,,team process docs (this folder)
+integration/*,P4,,V3 integration smoke tests + adapters (format translation only; owners fix their own modules)
+tests/test_contract_v3.py,P4,P2,V3 cross-module contract tests (recorded examples vs live responses)
 docs/api_contract_v3.md,P2,P1;P3;P4,frozen interface contract - consumers must review
 docs/DEMO_RUNBOOK_TH.md,P4,,demo runbook (P4 deliverable: updated runbook)
 docs/*,FROZEN,,original V2 spec documents

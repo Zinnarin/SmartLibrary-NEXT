@@ -1,0 +1,24 @@
+{
+  "interface": "C3",
+  "name": "resolve_again_409",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/admin/seat-reports/1/resolve",
+    "query": null,
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": {
+      "decision": "rejected",
+      "reason": "again"
+    }
+  },
+  "response": {
+    "status": 409,
+    "json": {
+      "error": "ALREADY_RESOLVED",
+      "message_th": "รายงานนี้ถูกตัดสินแล้ว"
+    }
+  }
+}

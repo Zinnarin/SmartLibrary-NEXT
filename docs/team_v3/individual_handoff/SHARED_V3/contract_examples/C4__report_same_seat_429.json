@@ -1,0 +1,24 @@
+{
+  "interface": "C4",
+  "name": "report_same_seat_429",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/seat-reports",
+    "query": null,
+    "headers": [
+      "X-Session-Token"
+    ],
+    "json_body": {
+      "seat_id": "A07",
+      "reason": "other"
+    }
+  },
+  "response": {
+    "status": 429,
+    "json": {
+      "error": "DUPLICATE_SEAT_REPORT",
+      "message_th": "คุณรายงานที่นั่งนี้ไปแล้ว กรุณารอเจ้าหน้าที่ตรวจสอบ"
+    }
+  }
+}

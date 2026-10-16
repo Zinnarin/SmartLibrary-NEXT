@@ -1,0 +1,34 @@
+{
+  "interface": "C1",
+  "name": "ingest_unknown_seat_404",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/ingest/observations",
+    "query": null,
+    "headers": [
+      "X-Device-Token"
+    ],
+    "json_body": {
+      "camera_id": "CV-LAB",
+      "frame_id": "probe-f007",
+      "observed_at_utc": "2026-10-16T07:18:31.815Z",
+      "frame_quality": "ok",
+      "model_version": "probe fixture (not a model)",
+      "seats": [
+        {
+          "seat_id": "LAB9",
+          "event_id": "probe-f007-LAB9",
+          "detections": []
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 404,
+    "json": {
+      "error": "SEAT_NOT_FOUND",
+      "message_th": "ไม่พบที่นั่ง LAB9"
+    }
+  }
+}

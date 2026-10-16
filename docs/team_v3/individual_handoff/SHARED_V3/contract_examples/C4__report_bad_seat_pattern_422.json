@@ -1,0 +1,36 @@
+{
+  "interface": "C4",
+  "name": "report_bad_seat_pattern_422",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/seat-reports",
+    "query": null,
+    "headers": [
+      "X-Session-Token"
+    ],
+    "json_body": {
+      "seat_id": "a-7",
+      "reason": "other"
+    }
+  },
+  "response": {
+    "status": 422,
+    "json": {
+      "detail": [
+        {
+          "type": "string_pattern_mismatch",
+          "loc": [
+            "body",
+            "seat_id"
+          ],
+          "msg": "String should match pattern '^[A-Z]{1,3}\\d{1,3}$'",
+          "input": "a-7",
+          "ctx": {
+            "pattern": "^[A-Z]{1,3}\\d{1,3}$"
+          }
+        }
+      ]
+    }
+  }
+}

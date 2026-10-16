@@ -1,0 +1,31 @@
+{
+  "interface": "C3",
+  "name": "override_clear",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "DELETE",
+    "path": "/api/admin/seats/B01/override",
+    "query": {
+      "reason": "ซ่อมเสร็จ"
+    },
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "id": 2,
+      "seat_id": "B01",
+      "state": "maintenance",
+      "reason": "เก้าอี้ชำรุด",
+      "actor_id": "staff-demo",
+      "created_at_utc": "2026-10-16T07:18:28.784Z",
+      "cleared_at_utc": "2026-10-16T07:18:28.799Z",
+      "cleared_by": "staff-demo",
+      "expires_at_utc": "2026-10-16T08:18:28.784Z",
+      "report_id": null
+    }
+  }
+}

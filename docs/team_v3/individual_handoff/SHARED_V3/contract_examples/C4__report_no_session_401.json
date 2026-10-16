@@ -1,0 +1,22 @@
+{
+  "interface": "C4",
+  "name": "report_no_session_401",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/seat-reports",
+    "query": null,
+    "headers": [],
+    "json_body": {
+      "seat_id": "A07",
+      "reason": "reported_occupied"
+    }
+  },
+  "response": {
+    "status": 401,
+    "json": {
+      "error": "SESSION_REQUIRED",
+      "message_th": "ไม่พบ session ชั่วคราว กรุณาโหลดหน้าใหม่"
+    }
+  }
+}

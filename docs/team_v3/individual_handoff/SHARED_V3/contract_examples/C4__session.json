@@ -1,0 +1,20 @@
+{
+  "interface": "C4",
+  "name": "session",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/session",
+    "query": null,
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "session_token": "200296a8bbf408c0.1792163908.68d246382d460a9222058f21",
+      "expires_at_utc": "2026-10-16T15:18:28.000Z",
+      "note_th": "session ชั่วคราวแบบไม่ระบุตัวตน ใช้จำกัดอัตราการรายงานเท่านั้น"
+    }
+  }
+}

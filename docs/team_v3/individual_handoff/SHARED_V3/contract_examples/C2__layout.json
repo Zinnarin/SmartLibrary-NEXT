@@ -1,0 +1,65 @@
+{
+  "interface": "C2",
+  "name": "layout",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/layout",
+    "query": null,
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "zones": [
+        {
+          "zone_id": "A",
+          "name_th": "โซนเงียบ A",
+          "name_en": "Quiet A",
+          "description_th": "โต๊ะเดี่ยว/โต๊ะคอมพิวเตอร์ ห้ามคุย",
+          "x": 30.0,
+          "y": 50.0,
+          "w": 320.0,
+          "h": 420.0,
+          "is_public": 1
+        },
+        "... (3 items total)"
+      ],
+      "waypoints": [
+        {
+          "waypoint_id": "ENTRANCE",
+          "label_th": "ทางเข้าหลัก",
+          "kind": "entrance",
+          "floor_x": 510.0,
+          "floor_y": 650.0
+        },
+        "... (11 items total)"
+      ],
+      "edges": [
+        {
+          "a": "ENTRANCE",
+          "b": "J_HALL",
+          "cost": 110.0
+        },
+        "... (10 items total)"
+      ],
+      "adjacency": [
+        {
+          "seat_a": "A01",
+          "seat_b": "A02",
+          "relation": "side_by_side",
+          "note_th": "โต๊ะริมหน้าต่างคู่ซ้าย"
+        },
+        "... (12 items total)"
+      ],
+      "seat_types_th": {
+        "single_desk": "โต๊ะเดี่ยว",
+        "computer_desk": "โต๊ะคอมพิวเตอร์",
+        "group_table": "โต๊ะกลุ่ม",
+        "sofa": "โซฟา"
+      },
+      "note_th": "ผังสาธิต (illustrative) ไม่ใช่ผังห้องสมุดจริง ข้อมูลปลั๊ก/โซนเงียบ/หน้าต่าง/ความติดกันเป็นข้อมูลสมมติ"
+    }
+  }
+}

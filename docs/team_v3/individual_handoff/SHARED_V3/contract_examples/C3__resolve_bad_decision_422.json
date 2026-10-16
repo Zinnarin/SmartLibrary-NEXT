@@ -1,0 +1,24 @@
+{
+  "interface": "C3",
+  "name": "resolve_bad_decision_422",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/admin/seat-reports/1/resolve",
+    "query": null,
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": {
+      "decision": "maybe",
+      "reason": "checked"
+    }
+  },
+  "response": {
+    "status": 422,
+    "json": {
+      "error": "BAD_DECISION",
+      "message_th": "decision ต้องเป็น accepted หรือ rejected"
+    }
+  }
+}

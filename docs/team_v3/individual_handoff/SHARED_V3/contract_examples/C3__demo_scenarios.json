@@ -1,0 +1,152 @@
+{
+  "interface": "C3",
+  "name": "demo_scenarios",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/demo/scenarios",
+    "query": null,
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "scenarios": [
+        {
+          "name": "NORMAL",
+          "description_th": "สถานการณ์ปกติ: มีทั้งที่นั่งว่าง มีคน มีของวาง และ 1 ที่นั่งถูกบัง (ไม่แน่ใจ)"
+        },
+        "... (7 items total)"
+      ],
+      "cameras": [
+        "CAM-A",
+        "... (4 items total)"
+      ],
+      "active": {
+        "id": 1,
+        "scenario": "NORMAL",
+        "base_scenario": "NORMAL",
+        "started_at_utc": "2026-10-16T07:18:16.487Z",
+        "ended_at_utc": null,
+        "params": {},
+        "truth": {
+          "A01": {
+            "view": "person",
+            "truth": "occupied"
+          },
+          "A02": {
+            "view": "person",
+            "truth": "occupied"
+          },
+          "A03": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "A04": {
+            "view": "belongings",
+            "truth": "reserved"
+          },
+          "A05": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "A06": {
+            "view": "person",
+            "truth": "occupied"
+          },
+          "A07": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "A08": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "B01": {
+            "view": "person",
+            "truth": "occupied"
+          },
+          "B02": {
+            "view": "person",
+            "truth": "occupied"
+          },
+          "B03": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "B04": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "B05": {
+            "view": "person",
+            "truth": "occupied"
+          },
+          "B06": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "B07": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "B08": {
+            "view": "person",
+            "truth": "occupied"
+          },
+          "C01": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "C02": {
+            "view": "person",
+            "truth": "occupied"
+          },
+          "C03": {
+            "view": "cup",
+            "truth": "available"
+          },
+          "C04": {
+            "view": "person",
+            "truth": "occupied"
+          },
+          "C05": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "C06": {
+            "view": "empty",
+            "truth": "available"
+          },
+          "C07": {
+            "view": "belongings",
+            "truth": "reserved"
+          },
+          "C08": {
+            "view": "occluded",
+            "truth": "occupied"
+          }
+        },
+        "cameras": {
+          "CAM-A": "online",
+          "CAM-B": "online",
+          "CAM-C": "online"
+        },
+        "is_active": 1,
+        "frames_emitted": 6
+      },
+      "history": [
+        {
+          "id": 1,
+          "scenario": "NORMAL",
+          "base_scenario": "NORMAL",
+          "started_at_utc": "2026-10-16T07:18:16.487Z",
+          "ended_at_utc": null,
+          "frames_emitted": 6
+        }
+      ],
+      "banner": "SIMULATION — NOT REAL CAMERA DATA (ข้อมูลจำลอง ไม่ใช่ข้อมูลจากกล้องจริง)"
+    }
+  }
+}
