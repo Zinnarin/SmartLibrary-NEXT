@@ -1,4 +1,8 @@
-"""Compose evidence/TEST_RESULTS.md verbatim from raw output files produced by real runs (no hand-typed numbers)."""
+"""Compose TEST_RESULTS.md verbatim from raw output files produced by real runs (no hand-typed numbers).
+
+V3 default: read and write in artifacts/ (git-ignored):  python scripts/compose_test_results.py
+Re-compose the frozen V2 file only on purpose:          python scripts/compose_test_results.py --in evidence --out evidence/TEST_RESULTS.md --allow-frozen
+"""
 from __future__ import annotations
 
 import json
@@ -14,7 +18,7 @@ def read(p: Path) -> str:
     return p.read_text(encoding="utf-8", errors="replace") if p.exists() else f"(missing: {p.name})"
 
 
-def main():
+def main(out_path: Path):
     out = ["# TEST RESULTS — raw outputs (composed by scripts/compose_test_results.py)", "",
            f"Composed: {datetime.now().isoformat(timespec='seconds')} (local time, Asia/Bangkok)", ""]
 
@@ -37,6 +41,8 @@ def main():
     # playwright
     out += ["## 2. Browser end-to-end (Playwright + Microsoft Edge, headless)", "", "Command (server running on 127.0.0.1:8000):", "```", r"cd apps\web; npx playwright test", "```"]
     p = EV / "playwright_results.json"
+    if not p.exists() and (EV / "e2e" / "playwright_results.json").exists():
+        p = EV / "e2e" / "playwright_results.json"
     if p.exists():
         d = json.loads(p.read_text(encoding="utf-8"))
         st = d.get("stats", {})
@@ -104,9 +110,22 @@ def main():
     out += ["## 7. PPTX verification", "", "```", r"powershell -ExecutionPolicy Bypass -File scripts\export_pptx_preview.ps1 -Deck presentation\progress_update_v2.pptx", "```",
             "PowerPoint (COM) opened the deck (8 slides, 960×540 pt = 16:9), fonts used: Leelawadee UI (all text; not embedded in PPTX), Calibri/Aptos (theme defaults); "
             "exported PDF (8 pages, Leelawadee UI embedded) + 8 PNGs to `presentation/preview/`; every slide inspected visually; one clipped caption (slide 6) found and fixed.", ""]
-    (EV / "TEST_RESULTS.md").write_text("\n".join(out), encoding="utf-8")
-    print("wrote", EV / "TEST_RESULTS.md")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text("\n".join(out), encoding="utf-8")
+    print("wrote", out_path)
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    import sys
+
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from artifacts_paths import artifact_dir, assert_writable
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--in", dest="inp", default=None, help="input folder (default: artifacts/)")
+    ap.add_argument("--out", default=None, help="output file (default: artifacts/TEST_RESULTS.md)")
+    ap.add_argument("--allow-frozen", action="store_true", help="explicitly allow writing a frozen V2 file")
+    a = ap.parse_args()
+    EV = (ROOT / a.inp) if a.inp else artifact_dir()
+    main(assert_writable(a.out, a.allow_frozen) if a.out else artifact_dir() / "TEST_RESULTS.md")

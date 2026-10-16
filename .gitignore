@@ -52,7 +52,8 @@ cv/models/
 cv/experiments/**/raw/
 cv/experiments/**/frames/
 
-# --- Generated artefacts ---
+# --- Generated artefacts (all test/tool output: see scripts/artifacts_paths.py, apps/web/e2e/artifacts.ts) ---
+artifacts/
 presentation/screenshots/crops/
 
 # --- Local tool / editor / OS files ---

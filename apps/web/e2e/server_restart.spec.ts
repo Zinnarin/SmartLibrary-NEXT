@@ -3,6 +3,7 @@ import { execSync, spawn, type ChildProcess } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { SHOTS } from "./artifacts";
 
 /**
  * Real crash test (not a simulated route cut): this test starts its OWN backend on port 8020 with a throwaway DB,
@@ -11,7 +12,6 @@ import { fileURLToPath } from "node:url";
  */
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "../../..");
-const SHOTS = path.join(ROOT, "presentation", "screenshots");
 const PORT = 8020;
 const URL = `http://127.0.0.1:${PORT}`;
 const DB = path.join(ROOT, ".pytest_tmp", "e2e_restart.db");

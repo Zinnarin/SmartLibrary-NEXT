@@ -1,17 +1,15 @@
 import { expect, test, type Page } from "@playwright/test";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const HERE = path.dirname(fileURLToPath(import.meta.url));
+import { SHOTS } from "./artifacts";
 
 /**
  * Browser smoke path required by the master prompt:
  * open map -> filter quiet/power -> report mismatch on recommended seat -> staff review + mark maintenance
  * -> student view updates over WebSocket (no reload) -> simulate camera disconnect -> UI refuses stale seats.
- * Screenshots are captured from the real running UI into presentation/screenshots/.
+ * Screenshots of the real running UI go to artifacts/e2e/screenshots/ (git-ignored; see ./artifacts.ts).
+ * The frozen V2 screenshots in presentation/screenshots/ are never overwritten.
  */
 const STAFF = process.env.SL_STAFF_TOKEN || "staff-demo-2569";
-const SHOTS = path.resolve(HERE, "../../../presentation/screenshots");
 const shot = (p: Page, name: string, fullPage = false) => p.screenshot({ path: path.join(SHOTS, name), fullPage });
 
 async function api(page: Page, method: string, url: string, body?: unknown) {

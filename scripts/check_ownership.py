@@ -5,6 +5,9 @@
   python scripts/check_ownership.py --owner P4 [--base main]      (or --owner auto: inferred from the branch name)
       lists files changed on this branch vs <base> and flags files outside the owner's scope.
       Exit code 1 if a FROZEN or never-commit file was touched, or a file of another owner was changed.
+  python scripts/check_ownership.py --frozen-clean
+      fails if any FROZEN V2 file is modified/deleted in the working tree or a new file appeared in a frozen
+      folder (run after tests: test runs must write to artifacts/ instead).
 
 Read-only: it never modifies files. Approval from another owner is a review decision recorded in the PR.
 """
@@ -21,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MAP = ROOT / "docs" / "team_v3" / "OWNERSHIP_MAP.csv"
 BRANCH_OWNER = {"feature/v3-cv": "P1", "feature/v3-backend": "P2", "feature/v3-student": "P3", "feature/v3-staff-qa": "P4"}
 NEVER = ["*.db", "*.db-wal", "*.db-shm", "*.sqlite*", "*.pt", "*.onnx", "*.mp4", "*.avi", "*.mov", "*.mkv",
-         ".env", ".env.*", "*.pem", "*.key", ".venv/*", ".venv-cv/*", "*node_modules/*", "apps/web/dist/*", ".claude/*", "*~$*"]
+         ".env", ".env.*", "*.pem", "*.key", ".venv/*", ".venv-cv/*", "*node_modules/*", "apps/web/dist/*", ".claude/*", "*~$*", "artifacts/*"]
 
 
 def git(*args: str) -> list[str]:
@@ -58,6 +61,15 @@ def audit(rules: list[dict]) -> int:
     return 0 if not unassigned and not never else 1
 
 
+def frozen_clean(rules: list[dict]) -> int:
+    changed = git("diff", "--name-only", "HEAD") + git("ls-files", "--others", "--exclude-standard")
+    bad = sorted({f for f in changed if owner_of(f, rules)["owner"] == "FROZEN"})
+    for f in bad:
+        print(f"MODIFIED FROZEN  {f}")
+    print("frozen-clean:", "OK (no frozen V2 file changed)" if not bad else f"FAIL ({len(bad)} frozen file(s) changed - restore with: git restore -- <file>)")
+    return 1 if bad else 0
+
+
 def check(owner: str, base: str, rules: list[dict]) -> int:
     changed = git("diff", "--name-only", f"{base}...HEAD")
     if not changed:
@@ -86,12 +98,15 @@ def check(owner: str, base: str, rules: list[dict]) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--audit", action="store_true")
+    ap.add_argument("--frozen-clean", action="store_true")
     ap.add_argument("--owner", choices=["P1", "P2", "P3", "P4", "auto"])
     ap.add_argument("--base", default="main")
     a = ap.parse_args()
     rules = load_rules()
     if a.audit:
         return audit(rules)
+    if a.frozen_clean:
+        return frozen_clean(rules)
     if a.owner == "auto":
         import os
 

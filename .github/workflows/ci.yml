@@ -20,6 +20,8 @@ jobs:
           python-version: "3.10"
       - run: pip install -r services/api/requirements.txt
       - run: python -m pytest -q
+      - name: tests did not modify frozen V2 evidence
+        run: python scripts/check_ownership.py --frozen-clean
       - name: ownership coverage (every tracked file has an owner, no never-commit files)
         run: python scripts/check_ownership.py --audit
       - name: ownership of this PR (informational - REVIEW lines need owner approval)
