@@ -122,3 +122,4 @@ git push origin feature/v3-<ของคุณ>
 
 ## 13. ใช้ Claude Code / AI ช่วยงาน
 ใช้ prompt ในไฟล์ task guide ของตัวเอง (ข้อ “Claude Code prompt”) — prompt บังคับให้ AI **ตรวจโค้ดจริงก่อนแก้**, แก้เฉพาะไฟล์ของคุณ, และรายงานผลทดสอบจริง · ต้องระบุใน PR ว่าส่วนไหน AI ช่วย
+ใช้ ChatGPT / Gemini / Copilot หรือเครื่องมืออื่น: ดู `docs/team_v3/TEAM_AI_ASSISTANT_GUIDE_TH.md` (prompt กลาง + วิธีแนบไฟล์) · ติดตั้งจาก ZIP/clone แบบละเอียด: `docs/team_v3/TEAM_LOCAL_SETUP_TH.md` · Git ทีละขั้น: `docs/team_v3/TEAM_GITHUB_WORKFLOW_TH.md`

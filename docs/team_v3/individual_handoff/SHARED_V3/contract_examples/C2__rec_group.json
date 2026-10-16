@@ -1,0 +1,93 @@
+{
+  "interface": "C2",
+  "name": "rec_group",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/recommendations",
+    "query": {
+      "group_size": 2,
+      "limit": 2
+    },
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "filters": {
+        "quiet": false,
+        "power": false,
+        "window_must": false,
+        "window_prefer": false,
+        "seat_type": null,
+        "zone": null,
+        "group_size": 2
+      },
+      "hard_constraint_rules_th": [
+        "สถานะต้องเป็น 'ว่าง' ที่ผ่านการยืนยันซ้ำ",
+        "... (4 items total)"
+      ],
+      "score_note_th": "คะแนนใช้เรียงลำดับตามความชอบเท่านั้น ไม่ใช่ความน่าจะเป็นว่าที่นั่งว่าง",
+      "matching_candidates": 24,
+      "excluded": [
+        {
+          "reason": "STATE_OCCUPIED",
+          "text_th": "ตรวจพบคนนั่ง",
+          "seats": [
+            "A01",
+            "... (9 items total)"
+          ]
+        },
+        "... (3 items total)"
+      ],
+      "availability_note_th": "สถานะอาจเปลี่ยนก่อนคุณเดินไปถึง หากพบว่าไม่ตรง กด SeatCheck",
+      "mode": "group",
+      "group_results": [
+        {
+          "seats": [
+            "B03",
+            "B04"
+          ],
+          "relation": "side_by_side",
+          "note_th": "โต๊ะกลุ่ม 1 ฝั่งล่าง",
+          "rank_score": 0.812,
+          "walk_units": 751.6,
+          "reasons": [
+            {
+              "kind": "group",
+              "text_th": "B03 และ B04 อยู่ติดกันตามผังที่บันทึกด้วยมือ (โต๊ะกลุ่ม 1 ฝั่งล่าง)"
+            },
+            {
+              "kind": "trust",
+              "text_th": "ทั้งสองที่นั่งผ่านเกณฑ์ความน่าเชื่อถือทุกข้อ"
+            }
+          ]
+        },
+        {
+          "seats": [
+            "A07",
+            "A08"
+          ],
+          "relation": "side_by_side",
+          "note_th": "โต๊ะเดี่ยวคู่ติดกัน",
+          "rank_score": 0.559,
+          "walk_units": 830.0,
+          "reasons": [
+            {
+              "kind": "group",
+              "text_th": "A07 และ A08 อยู่ติดกันตามผังที่บันทึกด้วยมือ (โต๊ะเดี่ยวคู่ติดกัน)"
+            },
+            {
+              "kind": "trust",
+              "text_th": "ทั้งสองที่นั่งผ่านเกณฑ์ความน่าเชื่อถือทุกข้อ"
+            }
+          ]
+        }
+      ],
+      "adjacency_source_th": "ความติดกันมาจากตาราง seat_adjacency ที่บันทึกด้วยมือ (ไม่ได้เดาจากระยะบนผัง)",
+      "server_time_utc": "2026-10-16T07:18:28.667Z",
+      "source_note_th": "ข้อมูลจากสถานการณ์จำลอง (SIMULATION)"
+    }
+  }
+}

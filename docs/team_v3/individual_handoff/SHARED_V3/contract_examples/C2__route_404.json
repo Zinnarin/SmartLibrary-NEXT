@@ -1,0 +1,21 @@
+{
+  "interface": "C2",
+  "name": "route_404",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/route",
+    "query": {
+      "to": "ZZ99"
+    },
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 404,
+    "json": {
+      "error": "NO_ROUTE",
+      "message_th": "ไม่พบเส้นทางจาก ENTRANCE ไป ZZ99"
+    }
+  }
+}

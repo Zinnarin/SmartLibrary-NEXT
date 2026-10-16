@@ -1,0 +1,48 @@
+{
+  "interface": "C2",
+  "name": "stats",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/stats",
+    "query": null,
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "server_time_utc": "2026-10-16T07:18:28.681Z",
+      "simulation": {
+        "label": "SIMULATED — ground truth is authored by the developer for the scenario; NOT a real accuracy measurement",
+        "scenario": "NORMAL",
+        "seats": 24,
+        "shown_available": 12,
+        "shown_available_but_truth_not_available": [],
+        "simulated_false_available_rate": 0.0,
+        "recommendable": 12,
+        "recommendable_but_truth_not_available": [],
+        "unknown_or_stale": 1,
+        "scenario_observations_stored": 144
+      },
+      "real_cv": {
+        "label": "REAL CV observations ingested via /api/ingest/observations (source='cv')",
+        "observations": 0,
+        "seats": 0,
+        "frames": 0,
+        "last_observation_utc": null,
+        "model_versions": [],
+        "accuracy": null,
+        "accuracy_note": "ไม่มีชุดข้อมูล ground truth ที่ติดป้ายโดยมนุษย์ จึงไม่คำนวณ accuracy / False Available ของ CV จริง"
+      },
+      "seatcheck": {
+        "by_status": {},
+        "resolution_latency_s": {
+          "n": 0,
+          "median": null
+        },
+        "note": "นับจากข้อมูลในฐานข้อมูลสาธิตเครื่องนี้ (รวมรายงานจำลองที่ติดป้าย is_simulated)"
+      }
+    }
+  }
+}

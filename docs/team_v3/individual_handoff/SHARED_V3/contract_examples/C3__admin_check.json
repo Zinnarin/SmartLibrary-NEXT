@@ -1,0 +1,22 @@
+{
+  "interface": "C3",
+  "name": "admin_check",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/admin/check",
+    "query": null,
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "ok": true,
+      "actor": "staff-demo",
+      "note_th": "demo gate เท่านั้น ไม่ใช่ระบบยืนยันตัวตนสำหรับใช้งานจริง"
+    }
+  }
+}

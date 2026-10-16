@@ -1,0 +1,70 @@
+{
+  "interface": "C1",
+  "name": "ingest_applied",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/ingest/observations",
+    "query": null,
+    "headers": [
+      "X-Device-Token"
+    ],
+    "json_body": {
+      "camera_id": "CV-LAB",
+      "frame_id": "probe-f001",
+      "observed_at_utc": "2026-10-16T07:18:28.815Z",
+      "frame_quality": "ok",
+      "model_version": "probe fixture (not a model)",
+      "seats": [
+        {
+          "seat_id": "LAB1",
+          "event_id": "probe-f001-LAB1",
+          "detections": [
+            {
+              "cls": "person",
+              "conf": 0.91,
+              "in_seat": true,
+              "in_table": false,
+              "seat_overlap": 0.62,
+              "table_overlap": 0.05,
+              "bbox": [
+                60.0,
+                420.0,
+                240.0,
+                900.0
+              ]
+            }
+          ]
+        },
+        {
+          "seat_id": "LAB3",
+          "event_id": "probe-f001-LAB3",
+          "detections": []
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "results": [
+        {
+          "status": "applied",
+          "seat_id": "LAB1",
+          "raw_candidate": "occupied",
+          "committed_state": "unknown",
+          "committed_changed": false,
+          "reason": "PENDING_OCCUPIED_1/3"
+        },
+        {
+          "status": "applied",
+          "seat_id": "LAB3",
+          "raw_candidate": "available",
+          "committed_state": "unknown",
+          "committed_changed": false,
+          "reason": "PENDING_AVAILABLE_1/4"
+        }
+      ]
+    }
+  }
+}

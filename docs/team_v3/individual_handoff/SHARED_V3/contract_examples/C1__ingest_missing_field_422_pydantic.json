@@ -1,0 +1,40 @@
+{
+  "interface": "C1",
+  "name": "ingest_missing_field_422_pydantic",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/ingest/observations",
+    "query": null,
+    "headers": [
+      "X-Device-Token"
+    ],
+    "json_body": {
+      "camera_id": "CV-LAB",
+      "frame_id": "x",
+      "observed_at_utc": "2026-10-16T07:18:28.815Z",
+      "seats": []
+    }
+  },
+  "response": {
+    "status": 422,
+    "json": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "frame_quality"
+          ],
+          "msg": "Field required",
+          "input": {
+            "camera_id": "CV-LAB",
+            "frame_id": "x",
+            "observed_at_utc": "2026-10-16T07:18:28.815Z",
+            "seats": []
+          }
+        }
+      ]
+    }
+  }
+}

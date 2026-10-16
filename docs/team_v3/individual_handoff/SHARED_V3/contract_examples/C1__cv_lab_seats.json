@@ -1,0 +1,68 @@
+{
+  "interface": "C1",
+  "name": "cv_lab_seats",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/cv/lab-seats",
+    "query": null,
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "server_time_utc": "2026-10-16T07:18:28.906Z",
+      "seats": [
+        {
+          "seat_id": "LAB1",
+          "floor": "CV Lab",
+          "zone_id": "LAB",
+          "seat_type": "lab_roi",
+          "has_power": false,
+          "near_window": false,
+          "quiet_zone": false,
+          "floor_x": 0.0,
+          "floor_y": 0.0,
+          "camera_id": "CV-LAB",
+          "metadata_source": "cv_lab_roi",
+          "physical_state": "unknown",
+          "physical_state_label_th": "ไม่แน่ใจ (ข้อมูลไม่พอ)",
+          "display_state": "unknown",
+          "display_state_label_th": "ไม่แน่ใจ (ข้อมูลไม่พอ)",
+          "display_tone": "unknown",
+          "source": "cv",
+          "observed_at_utc": "2026-10-16T07:18:28.815Z",
+          "ingested_at_utc": "2026-10-16T07:18:28.817Z",
+          "age_s": 0.1,
+          "is_stale": false,
+          "camera_health": "healthy",
+          "quality_flag": "ok",
+          "evidence_codes": [
+            "P_SEATED"
+          ],
+          "latest_candidate": "occupied",
+          "transition_pending": true,
+          "state_since_utc": null,
+          "state_for_s": null,
+          "last_confident_state": null,
+          "last_confident_at_utc": null,
+          "belongings_for_s": null,
+          "belongings_review_flag": false,
+          "pending_discrepancy": false,
+          "pending_report_count": 0,
+          "manual_override": null,
+          "is_recommendable": false,
+          "not_recommendable_reasons": [
+            "STATE_UNKNOWN"
+          ],
+          "not_recommendable_reasons_th": [
+            "หลักฐานไม่พอ จึงไม่ยืนยันว่าว่าง"
+          ],
+          "revision": 1
+        },
+        "... (4 items total)"
+      ]
+    }
+  }
+}

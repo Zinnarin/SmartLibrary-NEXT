@@ -1,0 +1,79 @@
+{
+  "interface": "C4",
+  "name": "seat_A07_after_report",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/seats/A07",
+    "query": null,
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "server_time_utc": "2026-10-16T07:18:28.734Z",
+      "seat": {
+        "seat_id": "A07",
+        "floor": "ชั้นสาธิต (Demo floor)",
+        "zone_id": "A",
+        "seat_type": "single_desk",
+        "has_power": true,
+        "near_window": false,
+        "quiet_zone": true,
+        "floor_x": 235.0,
+        "floor_y": 260.0,
+        "camera_id": "CAM-A",
+        "metadata_source": "demo_assumed",
+        "physical_state": "available",
+        "physical_state_label_th": "ว่าง",
+        "display_state": "available",
+        "display_state_label_th": "ว่าง",
+        "display_tone": "available",
+        "source": "scenario",
+        "observed_at_utc": "2026-10-16T07:18:28.621Z",
+        "ingested_at_utc": "2026-10-16T07:18:28.621Z",
+        "age_s": 0.1,
+        "is_stale": false,
+        "camera_health": "healthy",
+        "quality_flag": "ok",
+        "evidence_codes": [
+          "E_EMPTY_VISIBLE"
+        ],
+        "latest_candidate": "available",
+        "transition_pending": false,
+        "state_since_utc": "2026-10-16T07:18:24.603Z",
+        "state_for_s": 4.1,
+        "last_confident_state": "available",
+        "last_confident_at_utc": "2026-10-16T07:18:28.621Z",
+        "belongings_for_s": null,
+        "belongings_review_flag": false,
+        "pending_discrepancy": true,
+        "pending_report_count": 1,
+        "manual_override": null,
+        "is_recommendable": false,
+        "not_recommendable_reasons": [
+          "PENDING_REPORT"
+        ],
+        "not_recommendable_reasons_th": [
+          "มีรายงาน SeatCheck รอเจ้าหน้าที่ตรวจสอบ"
+        ],
+        "revision": 7
+      },
+      "recent_observations": [
+        {
+          "observed_at_utc": "2026-10-16T07:18:28.621Z",
+          "raw_candidate": "available",
+          "committed_state": "available",
+          "evidence_codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "frame_quality": "ok",
+          "source": "scenario",
+          "applied": 1
+        },
+        "... (6 items total)"
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "interface": "C3",
+  "name": "override_bad_state_422",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/admin/seats/B01/override",
+    "query": null,
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": {
+      "state": "occupied",
+      "reason": "test reason"
+    }
+  },
+  "response": {
+    "status": 422,
+    "json": {
+      "error": "BAD_OVERRIDE_STATE",
+      "message_th": "สถานะ override ต้องเป็น unavailable / maintenance / unknown"
+    }
+  }
+}

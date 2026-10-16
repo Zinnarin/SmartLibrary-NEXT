@@ -1,0 +1,33 @@
+{
+  "interface": "C4",
+  "name": "report_create_201",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/seat-reports",
+    "query": null,
+    "headers": [
+      "X-Session-Token"
+    ],
+    "json_body": {
+      "seat_id": "A07",
+      "reason": "reported_occupied",
+      "client_report_id": "probe-0001-abcd"
+    }
+  },
+  "response": {
+    "status": 201,
+    "json": {
+      "id": 1,
+      "seat_id": "A07",
+      "reason": "reported_occupied",
+      "reason_th": "มีคนนั่งอยู่จริง",
+      "created_at_utc": "2026-10-16T07:18:28.693Z",
+      "review_status": "pending",
+      "reviewed_at_utc": null,
+      "decision_reason": null,
+      "is_simulated": false,
+      "duplicate": false
+    }
+  }
+}

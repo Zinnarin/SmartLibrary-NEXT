@@ -1,0 +1,19 @@
+{
+  "interface": "C1",
+  "name": "cv_status_not_run",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/cv/status",
+    "query": null,
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "status": "NOT_RUN",
+      "message_th": "ยังไม่มีผลการรัน CV จริงในเครื่องนี้"
+    }
+  }
+}

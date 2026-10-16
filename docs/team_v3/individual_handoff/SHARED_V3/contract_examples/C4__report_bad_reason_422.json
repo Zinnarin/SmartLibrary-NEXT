@@ -1,0 +1,24 @@
+{
+  "interface": "C4",
+  "name": "report_bad_reason_422",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/seat-reports",
+    "query": null,
+    "headers": [
+      "X-Session-Token"
+    ],
+    "json_body": {
+      "seat_id": "A06",
+      "reason": "noise"
+    }
+  },
+  "response": {
+    "status": 422,
+    "json": {
+      "error": "BAD_REASON",
+      "message_th": "เหตุผลไม่ถูกต้อง"
+    }
+  }
+}

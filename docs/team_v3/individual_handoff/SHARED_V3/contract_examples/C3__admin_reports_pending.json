@@ -1,0 +1,39 @@
+{
+  "interface": "C3",
+  "name": "admin_reports_pending",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/admin/seat-reports",
+    "query": {
+      "status": "pending"
+    },
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "reports": [
+        {
+          "id": 1,
+          "seat_id": "A07",
+          "reason": "reported_occupied",
+          "created_at_utc": "2026-10-16T07:18:28.693Z",
+          "pseudo_session_id": "200296a8bbf408c0",
+          "client_report_id": "probe-0001-abcd",
+          "review_status": "pending",
+          "reviewed_at_utc": null,
+          "decision_reason": null,
+          "actor_id": null,
+          "is_simulated": false,
+          "display_state_at_report": "available",
+          "override_id": null,
+          "reason_th": "มีคนนั่งอยู่จริง"
+        }
+      ]
+    }
+  }
+}
