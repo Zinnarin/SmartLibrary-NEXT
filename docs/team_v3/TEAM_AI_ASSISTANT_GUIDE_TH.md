@@ -49,6 +49,7 @@ cd apps\web; npm run build; cd ..\..                                            
 powershell -ExecutionPolicy Bypass -File scripts\run_tests_windows.ps1            # + browser tests (เปิดเซิร์ฟเวอร์ไว้)
 .venv\Scripts\python scripts\check_ownership.py --owner P<#> --base origin/main   # ไม่มี BLOCK
 ```
+* `check_ownership.py` ใช้ได้เฉพาะใน **git clone** (ในโฟลเดอร์จาก ZIP ไม่มี `.git` จึง error)
 * ถ้า AI บอกว่า "test ผ่านแล้ว" แต่คุณยังไม่ได้รันเอง → **ยังไม่ผ่าน**
 * วางผลจริงลงใน PR; ห้ามแต่งผล
 

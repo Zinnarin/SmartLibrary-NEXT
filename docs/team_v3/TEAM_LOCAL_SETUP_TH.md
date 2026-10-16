@@ -23,6 +23,7 @@
 
 ## 2. ตำแหน่งโฟลเดอร์ที่แนะนำ
 ใช้ path สั้น ไม่มีช่องว่าง ไม่มีภาษาไทย และ **ไม่อยู่ใน OneDrive** เช่น `C:\dev\SmartLibrary_NEXT_V3` — `node_modules` มีไฟล์ลึกหลายชั้น path ยาว/โฟลเดอร์ sync อัตโนมัติอาจทำให้ติดตั้งช้าหรือพัง
+> พบจริงตอนทดสอบติดตั้งใหม่ (16 ต.ค. 2569): โฟลเดอร์ที่ชื่อมีลักษณะเป็น UUID (เช่น `…\1a2b3c4d-5e6f-7a8b-9c0d-…\`) ทำให้ `npm ci` ล้มด้วย `spawn C:\WINDOWS\system32\cmd.exe ENOENT` — ย้ายไป path ธรรมดาแล้วผ่าน
 
 ## 3. แตกไฟล์ ZIP
 1. คลิกขวา `SmartLibrary_NEXT_V3_Team_Source.zip` → **Extract All…** → เลือก `C:\dev\`
@@ -99,6 +100,7 @@ Stop-Process -Id <OwningProcess>
 cd apps\web; npm run build; cd ..\..                                       # ต้อง build ผ่าน
 powershell -ExecutionPolicy Bypass -File scripts\run_tests_windows.ps1     # pytest + Playwright (ต้องเปิดเซิร์ฟเวอร์ที่ :8000 ไว้อีกหน้าต่าง)
 ```
+> `scripts\check_ownership.py` (ตรวจว่าแก้เฉพาะไฟล์ของตัวเอง) ต้องรันใน **git clone** เท่านั้น — ในโฟลเดอร์จาก ZIP จะ error `not a git repository` เพราะไม่มี `.git`
 > ⚠ ในโค้ดรุ่นนี้ `run_tests_windows.ps1` และ Playwright **เขียนผลทับไฟล์ใน `evidence\` และ `presentation\screenshots\`** (หลักฐาน V2) — ในโฟลเดอร์ที่แตกจาก ZIP ไม่เป็นไร; ใน git clone ให้ `git restore evidence/ presentation/screenshots/` หลังรัน และ **ห้าม commit** ไฟล์เหล่านั้น (จะแก้ถาวรเมื่อ PR #16 merge)
 
 ## 15. แก้ปัญหาที่พบบ่อย
@@ -110,6 +112,8 @@ powershell -ExecutionPolicy Bypass -File scripts\run_tests_windows.ps1     # pyt
 | `ERROR: port 8000 is already in use` | มีเซิร์ฟเวอร์รันอยู่แล้ว → เปิด `http://127.0.0.1:8000/` หรือหยุดตัวเดิม (ข้อ 14) หรือใช้ `-Port 8010` |
 | `-Reset refused: a Smart Library server is still running` | หยุดเซิร์ฟเวอร์ทุกตัวก่อน แล้วค่อย `-Reset` |
 | `npm ci` ล้มเหลว | ตรวจ `node --version` (ใช้ 22 หรือ 24); ลบ `apps\web\node_modules` แล้ว `npm ci` ใหม่ |
+| `npm error enoent spawn C:\WINDOWS\system32\cmd.exe ENOENT` ตอน `npm ci` | ย้ายโปรเจกต์ไป path ธรรมดา เช่น `C:\dev\SmartLibrary_NEXT_V3` (ไม่มีชื่อโฟลเดอร์แบบ UUID) → ลบ `apps\web\node_modules` → `npm ci` ใหม่ |
+| `npm ci` แจ้ง `vulnerabilities` / แนะนำ `npm audit fix --force` | **อย่ารัน** `npm audit fix --force` (จะเปลี่ยนเวอร์ชันที่ทดสอบแล้ว) — ณ 16 ต.ค. 2569 มี 3 รายการระดับ high ใน **เครื่องมือ dev/test** (`vite`, `playwright`, `@playwright/test`) ไม่ใช่โค้ดที่หน้าเว็บส่งให้ผู้ใช้; การอัปเกรดต้องเสนอผ่าน CR (`package.json` = P3 + P4 อนุมัติ) |
 | path ยาวเกิน / ไฟล์หาย ระหว่าง `npm ci` | ย้ายโปรเจกต์ไป path สั้น เช่น `C:\dev\…` และไม่อยู่ใน OneDrive |
 | หน้าเว็บขึ้น `{"detail":"Not Found"}` หรือหน้าขาว | ยังไม่ได้ build หน้าเว็บ → `cd apps\web; npm run build` แล้ว refresh |
 | แก้หน้าเว็บแล้วพอร์ต 8000 ไม่เปลี่ยน | ต้อง `npm run build` ใหม่ หรือใช้ `npm run dev` (พอร์ต 5173) |
