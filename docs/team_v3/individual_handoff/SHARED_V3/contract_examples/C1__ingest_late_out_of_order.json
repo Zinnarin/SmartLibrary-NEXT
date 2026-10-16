@@ -1,0 +1,42 @@
+{
+  "interface": "C1",
+  "name": "ingest_late_out_of_order",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/ingest/observations",
+    "query": null,
+    "headers": [
+      "X-Device-Token"
+    ],
+    "json_body": {
+      "camera_id": "CV-LAB",
+      "frame_id": "probe-f000",
+      "observed_at_utc": "2026-10-16T07:18:25.815Z",
+      "frame_quality": "ok",
+      "model_version": "probe fixture (not a model)",
+      "seats": [
+        {
+          "seat_id": "LAB1",
+          "event_id": "probe-f000-LAB1",
+          "detections": []
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "results": [
+        {
+          "status": "late",
+          "seat_id": "LAB1",
+          "raw_candidate": "available",
+          "committed_state": "unknown",
+          "committed_changed": false,
+          "reason": "OUT_OF_ORDER_OR_DUPLICATE"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "interface": "C2",
+  "name": "ws_snapshot",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "response": {
+    "status": null,
+    "json": {
+      "type": "snapshot",
+      "server_time_utc": "2026-10-16T07:18:28.757Z",
+      "seats": [
+        {
+          "seat_id": "A01",
+          "floor": "ชั้นสาธิต (Demo floor)",
+          "zone_id": "A",
+          "seat_type": "single_desk",
+          "has_power": true,
+          "near_window": true,
+          "quiet_zone": true,
+          "floor_x": 70.0,
+          "floor_y": 110.0,
+          "camera_id": "CAM-A",
+          "metadata_source": "demo_assumed",
+          "physical_state": "occupied",
+          "physical_state_label_th": "มีคนนั่ง",
+          "display_state": "occupied",
+          "display_state_label_th": "มีคนนั่ง",
+          "display_tone": "occupied",
+          "source": "scenario",
+          "observed_at_utc": "2026-10-16T07:18:28.621Z",
+          "ingested_at_utc": "2026-10-16T07:18:28.621Z",
+          "age_s": 0.1,
+          "is_stale": false,
+          "camera_health": "healthy",
+          "quality_flag": "ok",
+          "evidence_codes": [
+            "P_SEATED"
+          ],
+          "latest_candidate": "occupied",
+          "transition_pending": false,
+          "state_since_utc": "2026-10-16T07:18:24.603Z",
+          "state_for_s": 4.2,
+          "last_confident_state": "occupied",
+          "last_confident_at_utc": "2026-10-16T07:18:28.621Z",
+          "belongings_for_s": null,
+          "belongings_review_flag": false,
+          "pending_discrepancy": false,
+          "pending_report_count": 0,
+          "manual_override": null,
+          "is_recommendable": false,
+          "not_recommendable_reasons": [
+            "STATE_OCCUPIED"
+          ],
+          "not_recommendable_reasons_th": [
+            "ตรวจพบคนนั่ง"
+          ],
+          "revision": 6
+        },
+        "... (24 items total)"
+      ],
+      "meta": {
+        "mode": "demo",
+        "simulation_active": true,
+        "simulation_banner": "SIMULATION — NOT REAL CAMERA DATA (ข้อมูลจำลอง ไม่ใช่ข้อมูลจากกล้องจริง)",
+        "scenario": {
+          "run_id": 1,
+          "name": "NORMAL",
+          "base": "NORMAL",
+          "started_at_utc": "2026-10-16T07:18:16.487Z",
+          "cameras": {
+            "CAM-A": "online",
+            "CAM-B": "online",
+            "CAM-C": "online"
+          },
+          "description_th": "สถานการณ์ปกติ: มีทั้งที่นั่งว่าง มีคน มีของวาง และ 1 ที่นั่งถูกบัง (ไม่แน่ใจ)"
+        },
+        "cameras": [
+          {
+            "camera_id": "CAM-A",
+            "label_th": "กล้องจำลองโซน A",
+            "zone_id": "A",
+            "source_mode": "scenario",
+            "status": "healthy"
+          },
+          "... (4 items total)"
+        ],
+        "pending_reports": 1,
+        "counts": {
+          "occupied": 9,
+          "available": 12,
+          "reserved": 2,
+          "unknown": 1
+        },
+        "recommendable": 11,
+        "total_seats": 24,
+        "recent_resolved_reports": [],
+        "freshness_ttl_s": 30.0
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "interface": "C3",
+  "name": "admin_check_401",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/admin/check",
+    "query": null,
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 401,
+    "json": {
+      "error": "STAFF_AUTH_REQUIRED",
+      "message_th": "ต้องเข้าสู่ระบบเจ้าหน้าที่ (demo gate)"
+    }
+  }
+}

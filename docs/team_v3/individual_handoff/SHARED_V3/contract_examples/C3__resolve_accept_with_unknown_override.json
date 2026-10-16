@@ -1,0 +1,38 @@
+{
+  "interface": "C3",
+  "name": "resolve_accept_with_unknown_override",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/admin/seat-reports/1/resolve",
+    "query": null,
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": {
+      "decision": "accepted",
+      "reason": "ตรวจแล้วมีคนนั่งจริง กล้องมองไม่เห็น",
+      "override_state": "unknown",
+      "override_minutes": 30
+    }
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "id": 1,
+      "seat_id": "A07",
+      "reason": "reported_occupied",
+      "created_at_utc": "2026-10-16T07:18:28.693Z",
+      "pseudo_session_id": "200296a8bbf408c0",
+      "client_report_id": "probe-0001-abcd",
+      "review_status": "accepted",
+      "reviewed_at_utc": "2026-10-16T07:18:28.765Z",
+      "decision_reason": "ตรวจแล้วมีคนนั่งจริง กล้องมองไม่เห็น",
+      "actor_id": "staff-demo",
+      "is_simulated": false,
+      "display_state_at_report": "available",
+      "override_id": 1,
+      "reason_th": "มีคนนั่งอยู่จริง"
+    }
+  }
+}

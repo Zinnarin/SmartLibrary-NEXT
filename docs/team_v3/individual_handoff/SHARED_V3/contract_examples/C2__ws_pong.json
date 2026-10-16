@@ -1,0 +1,12 @@
+{
+  "interface": "C2",
+  "name": "ws_pong",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "response": {
+    "status": null,
+    "json": {
+      "type": "pong",
+      "server_time_utc": "2026-10-16T07:18:28.764Z"
+    }
+  }
+}

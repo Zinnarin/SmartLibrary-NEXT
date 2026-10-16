@@ -1,0 +1,21 @@
+{
+  "interface": "C3",
+  "name": "override_clear_again_404",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "DELETE",
+    "path": "/api/admin/seats/B01/override",
+    "query": null,
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": null
+  },
+  "response": {
+    "status": 404,
+    "json": {
+      "error": "NO_ACTIVE_OVERRIDE",
+      "message_th": "B01 ไม่มี override ที่ใช้งานอยู่"
+    }
+  }
+}

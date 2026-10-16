@@ -1,0 +1,43 @@
+{
+  "interface": "C2",
+  "name": "route",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/route",
+    "query": {
+      "to": "A07"
+    },
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "from": "ENTRANCE",
+      "to": "A07",
+      "waypoints": [
+        "ENTRANCE",
+        "... (5 items total)"
+      ],
+      "points": [
+        {
+          "id": "ENTRANCE",
+          "label_th": "ทางเข้าหลัก",
+          "x": 510.0,
+          "y": 650.0
+        },
+        "... (6 items total)"
+      ],
+      "edges": [
+        [
+          "ENTRANCE",
+          "J_HALL"
+        ],
+        "... (5 items total)"
+      ],
+      "total_cost_units": 765.0,
+      "disclaimer_th": "เส้นทางสาธิตบนผังจำลองเท่านั้น (หน่วยผัง ไม่ใช่เมตร) ยังไม่ได้ตรวจสอบกับอาคารจริงหรือรับรองการเข้าถึงสำหรับวีลแชร์ ไม่ใช้ GPS/เซนเซอร์ระบุตำแหน่ง"
+    }
+  }
+}

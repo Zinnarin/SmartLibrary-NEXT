@@ -1,0 +1,21 @@
+{
+  "interface": "C2",
+  "name": "rec_bad_type_422",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/recommendations",
+    "query": {
+      "seat_type": "bed"
+    },
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 422,
+    "json": {
+      "error": "BAD_SEAT_TYPE",
+      "message_th": "ประเภทที่นั่งไม่ถูกต้อง"
+    }
+  }
+}

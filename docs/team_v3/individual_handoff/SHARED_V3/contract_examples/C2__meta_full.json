@@ -1,0 +1,66 @@
+{
+  "interface": "C2",
+  "name": "meta_full",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "response": {
+    "status": null,
+    "json": {
+      "mode": "demo",
+      "simulation_active": true,
+      "simulation_banner": "SIMULATION — NOT REAL CAMERA DATA (ข้อมูลจำลอง ไม่ใช่ข้อมูลจากกล้องจริง)",
+      "scenario": {
+        "run_id": 1,
+        "name": "NORMAL",
+        "base": "NORMAL",
+        "started_at_utc": "2026-10-16T07:18:16.487Z",
+        "cameras": {
+          "CAM-A": "online",
+          "CAM-B": "online",
+          "CAM-C": "online"
+        },
+        "description_th": "สถานการณ์ปกติ: มีทั้งที่นั่งว่าง มีคน มีของวาง และ 1 ที่นั่งถูกบัง (ไม่แน่ใจ)"
+      },
+      "cameras": [
+        {
+          "camera_id": "CAM-A",
+          "label_th": "กล้องจำลองโซน A",
+          "zone_id": "A",
+          "source_mode": "scenario",
+          "status": "healthy"
+        },
+        {
+          "camera_id": "CAM-B",
+          "label_th": "กล้องจำลองโซน B",
+          "zone_id": "B",
+          "source_mode": "scenario",
+          "status": "healthy"
+        },
+        {
+          "camera_id": "CAM-C",
+          "label_th": "กล้องจำลองโซน C",
+          "zone_id": "C",
+          "source_mode": "scenario",
+          "status": "healthy"
+        },
+        {
+          "camera_id": "CV-LAB",
+          "label_th": "แหล่งภาพ CV จริง (เฉพาะภาพที่ได้รับอนุญาต)",
+          "zone_id": "LAB",
+          "source_mode": "cv",
+          "status": "never_seen"
+        }
+      ],
+      "pending_reports": 0,
+      "counts": {
+        "occupied": 9,
+        "available": 12,
+        "reserved": 2,
+        "unknown": 1
+      },
+      "recommendable": 12,
+      "total_seats": 24,
+      "recent_resolved_reports": [],
+      "freshness_ttl_s": 30.0
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "interface": "C2",
+  "name": "ws_delta_after_resolve",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "response": {
+    "status": null,
+    "json": {
+      "type": "delta",
+      "server_time_utc": "2026-10-16T07:18:28.774Z",
+      "seats": [
+        {
+          "seat_id": "A07",
+          "floor": "ชั้นสาธิต (Demo floor)",
+          "zone_id": "A",
+          "seat_type": "single_desk",
+          "has_power": true,
+          "near_window": false,
+          "quiet_zone": true,
+          "floor_x": 235.0,
+          "floor_y": 260.0,
+          "camera_id": "CAM-A",
+          "metadata_source": "demo_assumed",
+          "physical_state": "available",
+          "physical_state_label_th": "ว่าง",
+          "display_state": "unknown",
+          "display_state_label_th": "ไม่แน่ใจ (ข้อมูลไม่พอ)",
+          "display_tone": "unknown",
+          "source": "scenario",
+          "observed_at_utc": "2026-10-16T07:18:28.621Z",
+          "ingested_at_utc": "2026-10-16T07:18:28.621Z",
+          "age_s": 0.2,
+          "is_stale": false,
+          "camera_health": "healthy",
+          "quality_flag": "ok",
+          "evidence_codes": [
+            "E_EMPTY_VISIBLE"
+          ],
+          "latest_candidate": "available",
+          "transition_pending": false,
+          "state_since_utc": "2026-10-16T07:18:24.603Z",
+          "state_for_s": 4.2,
+          "last_confident_state": "available",
+          "last_confident_at_utc": "2026-10-16T07:18:28.621Z",
+          "belongings_for_s": null,
+          "belongings_review_flag": false,
+          "pending_discrepancy": false,
+          "pending_report_count": 0,
+          "manual_override": {
+            "id": 1,
+            "state": "unknown",
+            "reason": "จากรายงาน #1: ตรวจแล้วมีคนนั่งจริง กล้องมองไม่เห็น",
+            "actor_id": "staff-demo",
+            "created_at_utc": "2026-10-16T07:18:28.765Z",
+            "expires_at_utc": "2026-10-16T07:48:28.765Z",
+            "report_id": 1
+          },
+          "is_recommendable": false,
+          "not_recommendable_reasons": [
+            "STAFF_OVERRIDE"
+          ],
+          "not_recommendable_reasons_th": [
+            "เจ้าหน้าที่กำหนดสถานะทับไว้"
+          ],
+          "revision": 9
+        }
+      ],
+      "meta": {
+        "mode": "demo",
+        "simulation_active": true,
+        "simulation_banner": "SIMULATION — NOT REAL CAMERA DATA (ข้อมูลจำลอง ไม่ใช่ข้อมูลจากกล้องจริง)",
+        "scenario": {
+          "run_id": 1,
+          "name": "NORMAL",
+          "base": "NORMAL",
+          "started_at_utc": "2026-10-16T07:18:16.487Z",
+          "cameras": {
+            "CAM-A": "online",
+            "CAM-B": "online",
+            "CAM-C": "online"
+          },
+          "description_th": "สถานการณ์ปกติ: มีทั้งที่นั่งว่าง มีคน มีของวาง และ 1 ที่นั่งถูกบัง (ไม่แน่ใจ)"
+        },
+        "cameras": [
+          {
+            "camera_id": "CAM-A",
+            "label_th": "กล้องจำลองโซน A",
+            "zone_id": "A",
+            "source_mode": "scenario",
+            "status": "healthy"
+          },
+          "... (4 items total)"
+        ],
+        "pending_reports": 0,
+        "counts": {
+          "occupied": 9,
+          "available": 11,
+          "reserved": 2,
+          "unknown": 2
+        },
+        "recommendable": 11,
+        "total_seats": 24,
+        "recent_resolved_reports": [
+          {
+            "id": 1,
+            "seat_id": "A07",
+            "reason": "reported_occupied",
+            "reason_th": "มีคนนั่งอยู่จริง",
+            "created_at_utc": "2026-10-16T07:18:28.693Z",
+            "review_status": "accepted",
+            "reviewed_at_utc": "2026-10-16T07:18:28.765Z",
+            "decision_reason": "ตรวจแล้วมีคนนั่งจริง กล้องมองไม่เห็น",
+            "is_simulated": 0,
+            "duplicate": false
+          }
+        ],
+        "freshness_ttl_s": 30.0
+      }
+    }
+  }
+}

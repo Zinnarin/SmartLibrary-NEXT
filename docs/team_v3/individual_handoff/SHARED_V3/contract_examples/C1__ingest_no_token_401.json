@@ -1,0 +1,31 @@
+{
+  "interface": "C1",
+  "name": "ingest_no_token_401",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "POST",
+    "path": "/api/ingest/observations",
+    "query": null,
+    "headers": [],
+    "json_body": {
+      "camera_id": "CV-LAB",
+      "frame_id": "probe-f003",
+      "observed_at_utc": "2026-10-16T07:18:28.815Z",
+      "frame_quality": "ok",
+      "model_version": "probe fixture (not a model)",
+      "seats": [
+        {
+          "seat_id": "LAB1",
+          "event_id": "probe-f003-LAB1",
+          "detections": []
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 401,
+    "json": {
+      "error": "DEVICE_AUTH_REQUIRED"
+    }
+  }
+}

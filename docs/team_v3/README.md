@@ -3,6 +3,7 @@
 | ไฟล์ | สถานะ |
 |---|---|
 | `TEAM_ONBOARDING_TH.md` | **สมาชิกใหม่อ่านก่อน** — clone, ติดตั้ง, เปิดแอป, ทดสอบ, branch, commit/push/PR, blocker, integration |
+| `individual_handoff/` | **ชุดพัฒนาอิสระ V3 (16 ต.ค.)** — แพ็กเกจ 9 ไฟล์ต่อคน (P1–P4), `SHARED_V3/` (สัญญา C0–C4 ที่สกัดจากโค้ดจริง + ตัวอย่าง request/response จริง 57 ไฟล์, ข้อตกลง GREEN/YELLOW/RED, CR, เกณฑ์ยอมรับสุดท้าย), `FINAL_INTEGRATION_PLAYBOOK_TH.md`; ตรวจ/สร้าง ZIP ด้วย `scripts/build_handoff_packages.py` — ละเอียดกว่าและมาแทน `tasks/` สำหรับงาน V3 |
 | `tasks/P1_CV_TASK_GUIDE_TH.md` … `tasks/P4_STAFF_QA_TASK_GUIDE_TH.md` | งานของแต่ละคน (8 หัวข้อ) + Claude Code prompt พร้อมใช้ |
 | `GITHUB_TEAM_READY_REPORT.md` | สถานะ GitHub repo (private), branch, tag, CI, issues, การเชิญสมาชิก |
 | `TEAM_SETUP_REPORT.md` | ความพร้อมของ repo, ownership ที่ตรวจกับโค้ดจริงแล้ว, contract, ขั้นตอน GitHub (ก่อนสร้าง repo) |

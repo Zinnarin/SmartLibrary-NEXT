@@ -1,0 +1,36 @@
+{
+  "interface": "C3",
+  "name": "admin_events",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/admin/events",
+    "query": {
+      "limit": 3
+    },
+    "headers": [
+      "X-Staff-Token"
+    ],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "events": [
+        {
+          "id": 32,
+          "created_at_utc": "2026-10-16T07:18:28.799Z",
+          "category": "override",
+          "detail": "ยกเลิก override ของ B01: ซ่อมเสร็จ",
+          "source": "staff",
+          "seat_id": "B01",
+          "actor_id": "staff-demo",
+          "payload": {
+            "override_id": 2
+          }
+        },
+        "... (3 items total)"
+      ]
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "interface": "C2",
+  "name": "rec_single",
+  "provenance": "REAL response recorded on 2026-10-16 from the V2 code at commit edc7903 (FastAPI TestClient, temporary demo DB, NORMAL scenario = SIMULATION). Long lists are trimmed. Auth header VALUES are deliberately not recorded.",
+  "request": {
+    "method": "GET",
+    "path": "/api/recommendations",
+    "query": {
+      "quiet": "true",
+      "power": "true",
+      "limit": 2
+    },
+    "headers": [],
+    "json_body": null
+  },
+  "response": {
+    "status": 200,
+    "json": {
+      "filters": {
+        "quiet": true,
+        "power": true,
+        "window_must": false,
+        "window_prefer": false,
+        "seat_type": null,
+        "zone": null,
+        "group_size": 1
+      },
+      "hard_constraint_rules_th": [
+        "สถานะต้องเป็น 'ว่าง' ที่ผ่านการยืนยันซ้ำ",
+        "... (4 items total)"
+      ],
+      "score_note_th": "คะแนนใช้เรียงลำดับตามความชอบเท่านั้น ไม่ใช่ความน่าจะเป็นว่าที่นั่งว่าง",
+      "matching_candidates": 5,
+      "excluded": [
+        {
+          "reason": "STATE_OCCUPIED",
+          "text_th": "ตรวจพบคนนั่ง",
+          "seats": [
+            "A01",
+            "... (3 items total)"
+          ]
+        }
+      ],
+      "availability_note_th": "สถานะอาจเปลี่ยนก่อนคุณเดินไปถึง หากพบว่าไม่ตรง กด SeatCheck",
+      "mode": "single",
+      "results": [
+        {
+          "seat_id": "A07",
+          "zone_id": "A",
+          "seat_type": "single_desk",
+          "seat_type_th": "โต๊ะเดี่ยว",
+          "rank_score": 0.329,
+          "walk_units": 765.0,
+          "reasons": [
+            {
+              "kind": "must",
+              "text_th": "อยู่ในโซนเงียบ ✓"
+            },
+            "... (6 items total)"
+          ],
+          "observed_at_utc": "2026-10-16T07:18:28.621Z"
+        },
+        {
+          "seat_id": "A05",
+          "zone_id": "A",
+          "seat_type": "computer_desk",
+          "seat_type_th": "โต๊ะคอมพิวเตอร์",
+          "rank_score": 0.23,
+          "walk_units": 830.0,
+          "reasons": [
+            {
+              "kind": "must",
+              "text_th": "อยู่ในโซนเงียบ ✓"
+            },
+            "... (6 items total)"
+          ],
+          "observed_at_utc": "2026-10-16T07:18:28.621Z"
+        }
+      ],
+      "server_time_utc": "2026-10-16T07:18:28.663Z",
+      "source_note_th": "ข้อมูลจากสถานการณ์จำลอง (SIMULATION)"
+    }
+  }
+}
