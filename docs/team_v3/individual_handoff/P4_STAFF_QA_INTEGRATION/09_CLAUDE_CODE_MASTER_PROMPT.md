@@ -76,3 +76,28 @@ Q6 tests/test_contract_v3.py from contract_examples; Q7 staff devices tab + repo
 (+ adapters only if needed); Q9 CODEOWNERS when usernames are known; Q10 integration log, TEAM_V3_ACCEPTANCE.csv,
 final evidence, release notes; Q11 V3 runbook + slides in presentation/v3/.
 ```
+
+## ใช้กับ AI อื่น (ChatGPT / Gemini / Copilot) หรือเขียนเอง
+prompt ด้านบนเขียนสำหรับเครื่องมือที่ **อ่านไฟล์และรันคำสั่งในเครื่องได้เอง** — AI บนเว็บส่วนใหญ่ **มองไม่เห็นไฟล์ในเครื่องคุณ** ให้ทำแบบนี้แทน:
+1. ทำ STEP 0 เอง: รัน `git status`, `git branch --show-current`, `.venv\Scripts\python -m pytest -q` แล้วจดผลจริง
+2. เปิด AI แล้ว **แนบไฟล์** (หรือคัดลอกเนื้อหาไปวาง): `02_ASSIGNED_MISSION_TH.md`, `03_EXISTING_CODE_AND_OWNERSHIP.md`, `05_INTEGRATION_CONTRACT.md` (ส่งเฉพาะหัวข้อ C0 + C3 + C4 ถ้ายาวเกิน) ของชุดนี้ + ไฟล์โค้ด: `apps/web/src/pages/StaffConsole.tsx`, `apps/web/src/components/SeatDetail.tsx`, `apps/web/e2e/reliability.spec.ts`, `tests/test_reliability.py`
+3. วาง prompt ด้านล่าง (ส่วน CONTRACT/HARD RULES ในกล่องด้านบนวางเพิ่มได้ — ใช้ได้กับทุกเครื่องมือ)
+4. ตรวจโค้ดที่ได้และรัน test เองตาม `06_ACCEPTANCE_CRITERIA.md` และ `08_DELIVERY_CHECKLIST.md` — AI บอกว่าผ่าน ≠ ผ่าน
+รายละเอียดเพิ่ม: `docs/team_v3/TEAM_AI_ASSISTANT_GUIDE_TH.md` (อยู่ใน ZIP ซอร์สโค้ดและใน repo)
+
+```text
+You are helping P4 Staff, QA & Integration of a 4-student team improve an EXISTING, working system: Smart Library NEXT
+(FastAPI + SQLite backend, React + TypeScript web app, YOLO-based CV pipeline). It shows library seat status only as
+far as evidence supports it ("unknown"/"stale" instead of guessing "available"). All demo seat data is SIMULATION; the
+YOLO pipeline was only tested on a sample image. Do NOT redesign or rebuild the system.
+You cannot see my computer: I attached my mission, my file-ownership list, my integration contract and these source
+files: <list the exact paths you attached>. Ask me for any other file by path instead of guessing.
+TASK: <one concrete task, e.g. "make 'unknown (pending inspection)' the default override when staff confirm a 'someone is sitting' report">
+RULES: change only files I own; if a change touches another member's file or a shared API, stop and write a short
+change request instead; keep the contract backward compatible (never rename/remove endpoints, JSON fields or enum
+values; new fields optional); keep safety rules (never show unknown/stale/offline/reported seats as available, keep
+SIMULATION labels, no invented accuracy); never weaken or delete tests and add a test for the change; smallest
+possible change shown as a diff with file paths; never include passwords, tokens or personal data.
+OUTPUT: how the current code works (from the attached files only), plan, diff, tests, the exact commands to verify
+(pytest, npm run build, scripts/check_ownership.py), and risks or uncertainties.
+```

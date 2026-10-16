@@ -30,7 +30,7 @@
 
 ## ลำดับการอ่านสำหรับสมาชิกใหม่
 1. `SHARED_V3/00_PROJECT_OVERVIEW_TH.md` → 2. ไฟล์ 01–04 ของตัวเอง → 3. `05_INTEGRATION_CONTRACT.md` ของตัวเอง → 4. `SHARED_V3/04_TEAM_WORKING_AGREEMENT_TH.md` → 5. `06`, `08` ของตัวเอง → 6. วาง `09_CLAUDE_CODE_MASTER_PROMPT.md` ใน Claude Code
-ก่อนเริ่มโค้ด อ่าน `docs/team_v3/TEAM_ONBOARDING_TH.md` (clone, ติดตั้ง, เปิดแอป) — ต้องเป็น collaborator ของ repo ก่อน
+ก่อนเริ่มโค้ด อ่าน `docs/team_v3/TEAM_LOCAL_SETUP_TH.md` (ติดตั้ง/รันจาก ZIP หรือ clone), `docs/team_v3/TEAM_GITHUB_WORKFLOW_TH.md` (ต้องเป็น collaborator ของ repo ก่อน) และ `docs/team_v3/TEAM_AI_ASSISTANT_GUIDE_TH.md` (ใช้ AI ใดก็ได้ — ไม่บังคับ Claude Code)
 
 ## ความสัมพันธ์กับเอกสารเดิม
 * `docs/team_v3/tasks/P*_TASK_GUIDE_TH.md` = สรุปสั้นรุ่นก่อน (15 ต.ค.) — **ชุดนี้ละเอียดกว่าและมาแทนสำหรับงาน V3**; เนื้อหาไม่ขัดกัน (ownership เดียวกันจาก `OWNERSHIP_MAP.csv`)
